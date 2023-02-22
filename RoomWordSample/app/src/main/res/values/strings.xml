@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">RoomWordSample</string>
+    <string name="add_word">+</string>
+
+    <string name="hint_word">Word...</string>
+    <string name="button_save">Save</string>
+    <string name="button_no">No</string>
+    <string name="button_yes">Yes</string>
+
+    <string name="empty_not_saved">Word not saved because it is empty.</string>
+
+    <string name="delete_text">Are You Sure You Want To Delete The Database</string>
+
+    <string name="delete_cancelled">Database deletion cancelled</string>
+    <string name="database_deleted">The database has been deleted</string>
+    <string name="word_added">Successfully added</string>
+
+
+</resources>
