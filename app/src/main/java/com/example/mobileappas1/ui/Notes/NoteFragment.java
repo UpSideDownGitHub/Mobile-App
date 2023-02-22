@@ -1,4 +1,4 @@
-package com.example.mobileappas1.ui.dashboard;
+package com.example.mobileappas1.ui.Notes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,20 +12,20 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.mobileappas1.databinding.FragmentDashboardBinding;
 
-public class DashboardFragment extends Fragment {
+public class NoteFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        NoteViewModel noteViewModel =
+                new ViewModelProvider(this).get(NoteViewModel.class);
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        noteViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

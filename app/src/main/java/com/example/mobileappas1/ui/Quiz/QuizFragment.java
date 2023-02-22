@@ -1,4 +1,4 @@
-package com.example.mobileappas1.ui.home;
+package com.example.mobileappas1.ui.Quiz;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,20 +12,20 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.mobileappas1.databinding.FragmentHomeBinding;
 
-public class HomeFragment extends Fragment {
+public class QuizFragment extends Fragment {
 
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        QuizViewModel quizViewModel =
+                new ViewModelProvider(this).get(QuizViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        quizViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
