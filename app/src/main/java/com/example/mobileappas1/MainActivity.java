@@ -2,6 +2,7 @@ package com.example.mobileappas1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
                             getApplicationContext(),
                             R.string.welcome,
                             Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(MainActivity.this,SelectionActivity.class);
+                    startActivity(intent);
                     return;
                 }
 
