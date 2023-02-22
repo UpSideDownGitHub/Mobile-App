@@ -33,24 +33,22 @@ public class MainActivity extends AppCompatActivity {
         {
             if (username.getText().toString().equals(usernames[i]))
             {
-                for (int j = 0; j < passwords.length; j++)
+                if (password.getText().toString().equals(passwords[i]))
                 {
-                    if (password.getText().toString().equals(passwords[j]))
-                    {
-                        // both are correct so move to next window
-                        Toast.makeText(
-                                getApplicationContext(),
-                                R.string.welcome,
-                                Toast.LENGTH_LONG).show();
-                        return;
-                    }
+                    // both are correct so move to next window
+                    Toast.makeText(
+                            getApplicationContext(),
+                            R.string.welcome,
+                            Toast.LENGTH_LONG).show();
+                    return;
                 }
+
                 //password incorrect
                 Toast.makeText(
                         getApplicationContext(),
                         R.string.password_incorrect,
                         Toast.LENGTH_LONG).show();
-                break;
+                return;
             }
         }
         // Username Incorrect
