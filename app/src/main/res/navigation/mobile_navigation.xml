@@ -3,23 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_notes">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.mobileappas1.ui.Quiz.QuizFragment"
-        android:label="@string/title_note"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_notes"
         android:name="com.example.mobileappas1.ui.Notes.NoteFragment"
-        android:label="@string/title_quiz"
+        android:label="@string/title_note"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_quiz"
+        android:name="com.example.mobileappas1.ui.Quiz.QuizFragment"
+        android:label="@string/title_quiz"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_calc"
         android:name="com.example.mobileappas1.ui.Calc.CalcFragment"
         android:label="@string/title_calc"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_dice"
+        android:name="com.example.mobileappas1.ui.Dice.DiceFragment"
+        android:label="@string/title_dice"
+        tools:layout="@layout/fragment_dice" />
+    <fragment
+        android:id="@+id/navigation_lang"
+        android:name="com.example.mobileappas1.ui.Language.LanguageFragment"
+        android:label="@string/title_lang"
+        tools:layout="@layout/fragment_language" />
 </navigation>
