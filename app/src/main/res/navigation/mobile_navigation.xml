@@ -10,6 +10,11 @@
         android:name="com.example.mobileappas1.ui.Notes.NoteFragment"
         android:label="@string/title_note"
         tools:layout="@layout/fragment_note" />
+    <fragment
+        android:id="@+id/navigation_new_notes"
+        android:name="com.example.mobileappas1.ui.Notes.newNote.NewNoteFragment"
+        android:label="@string/title_note"
+        tools:layout="@layout/fragment_new_note" />
 
     <fragment
         android:id="@+id/navigation_quiz"

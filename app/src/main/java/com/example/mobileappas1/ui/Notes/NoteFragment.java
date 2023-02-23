@@ -11,9 +11,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mobileappas1.R;
 import com.example.mobileappas1.databinding.FragmentNoteBinding;
 import com.example.mobileappas1.ui.Calc.CalcAdapter;
 import com.google.gson.Gson;
@@ -68,7 +70,16 @@ public class NoteFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
 
+        // check for button press
+        binding.notesActionbutton.setOnClickListener( view -> addNewClicked(view));
+
+
         return root;
+    }
+
+    public void addNewClicked(View view)
+    {
+        Navigation.findNavController(view).navigate(R.id.navigation_new_notes);
     }
 
     public boolean isFilePresent(Context context, String fileName) {

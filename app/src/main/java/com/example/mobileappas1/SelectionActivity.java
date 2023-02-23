@@ -46,7 +46,8 @@ public class SelectionActivity extends AppCompatActivity {
                 R.id.navigation_quiz,
                 R.id.navigation_calc,
                 R.id.navigation_dice,
-                R.id.navigation_lang)
+                R.id.navigation_lang,
+                R.id.navigation_new_notes)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_selection);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
