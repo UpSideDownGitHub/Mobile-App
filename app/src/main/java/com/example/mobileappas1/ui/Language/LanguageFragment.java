@@ -14,30 +14,30 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.mobileappas1.R;
-import com.example.mobileappas1.databinding.FragmentNotificationsBinding;
+//import com.example.mobileappas1.databinding.FragmentNotificationsBinding;
 import com.example.mobileappas1.ui.Calc.CalcViewModel;
 
 public class LanguageFragment extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    //private FragmentNotificationsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         CalcViewModel calcViewModel =
                 new ViewModelProvider(this).get(CalcViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        //binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        //View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        calcViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        //final TextView textView = binding.textNotifications;
+        //calcViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        return getView();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        //binding = null;
     }
 
 }

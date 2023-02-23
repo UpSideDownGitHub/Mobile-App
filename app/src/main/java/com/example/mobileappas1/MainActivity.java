@@ -2,8 +2,11 @@ package com.example.mobileappas1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // change the title of the application
+        getSupportActionBar().setTitle("");
 
         Button loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener( view -> checkLogin());
@@ -43,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(MainActivity.this,SelectionActivity.class);
+                    intent.putExtra("playerID", i);
                     startActivity(intent);
                     return;
                 }

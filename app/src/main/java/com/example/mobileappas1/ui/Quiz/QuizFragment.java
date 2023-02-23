@@ -10,28 +10,28 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.mobileappas1.databinding.FragmentHomeBinding;
+//import com.example.mobileappas1.databinding.FragmentHomeBinding;
 
 public class QuizFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    //private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         QuizViewModel quizViewModel =
                 new ViewModelProvider(this).get(QuizViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        //binding = FragmentHomeBinding.inflate(inflater, container, false);
+        //View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        quizViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        //final TextView textView = binding.textHome;
+        //quizViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        return getView();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        //binding = null;
     }
 }

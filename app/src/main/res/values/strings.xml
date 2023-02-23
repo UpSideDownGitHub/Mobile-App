@@ -9,9 +9,8 @@
     <string name="username_incorrect">Username Incorrect</string>
     <string name="welcome">Welcome</string>
 
-
-    <string name="title_activity_selection">SelectionActivity</string>
     <!-- ACTIVITY TITLES -->
+    <string name="title_activity_selection">SelectionActivity</string>
     <string name="title_note">Note</string>
     <string name="title_quiz">Quiz</string>
     <string name="title_calc">Calculator</string>
@@ -20,4 +19,36 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- CALCULATOR -->
+    <!-- calculator line -->
+    <string name="calc_default">Enter Sum...</string>
+
+    <!-- bottom line -->
+    <string name="calc_0">0</string>
+    <string name="calc_point">.</string>
+    <string name="calc_root"> </string>
+    <string name="calc_ans">Ans</string>
+    <string name="calc_equals">=</string>
+
+    <!-- second line -->
+    <string name="calc_1">1</string>
+    <string name="calc_2">2</string>
+    <string name="calc_3">3</string>
+    <string name="calc_plus">+</string>
+    <string name="calc_minus">-</string>
+
+    <!-- third line -->
+    <string name="calc_4">4</string>
+    <string name="calc_5">5</string>
+    <string name="calc_6">6</string>
+    <string name="calc_multiply">x</string>
+    <string name="calc_divide">÷</string>
+
+    <!-- fourth line -->
+    <string name="calc_7">7</string>
+    <string name="calc_8">8</string>
+    <string name="calc_9">9</string>
+    <string name="calc_del">DEL</string>
+    <string name="calc_ac">AC</string>
 </resources>
