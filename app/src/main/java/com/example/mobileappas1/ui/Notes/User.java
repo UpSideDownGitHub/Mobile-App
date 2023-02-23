@@ -1,9 +1,11 @@
 package com.example.mobileappas1.ui.Notes;
 
+import java.util.ArrayList;
+
 public class User {
     private String id;
     private String name;
-    private Note[] notes;
+    private ArrayList<Note> notes;
 
     public String getID() {
         return id;
@@ -21,11 +23,11 @@ public class User {
         this.name = value;
     }
 
-    public Note[] getNotes() {
+    public ArrayList<Note> getNotes() {
         return notes;
     }
 
-    public void setNotes(Note[] value) {
+    public void setNotes(ArrayList<Note> value) {
         this.notes = value;
     }
 }

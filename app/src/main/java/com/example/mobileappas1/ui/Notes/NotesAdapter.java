@@ -62,9 +62,18 @@ public class NotesAdapter extends RecyclerView.Adapter<com.example.mobileappas1.
         }
     }
 
+    public void clearList()
+    {
+        noteList.clear();
+    }
+
     public void addValue(String value)
     {
-        noteList.add(0, value);
+        noteList.add(value);
+    }
+
+    public void update()
+    {
         notifyDataSetChanged();
     }
 }

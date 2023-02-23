@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/title_edittext"
         android:layout_width="350dp"
         android:layout_height="75dp"
         android:layout_marginTop="10dp"
@@ -29,17 +29,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/contents_edittext"
         android:layout_width="350dp"
         android:layout_height="400dp"
         android:layout_marginTop="50dp"
         android:ems="10"
         android:gravity="top|left"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="Contents"
         android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/title_edittext" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

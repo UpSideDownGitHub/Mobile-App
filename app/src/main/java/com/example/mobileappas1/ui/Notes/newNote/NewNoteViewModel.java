@@ -11,7 +11,7 @@ public class NewNoteViewModel extends ViewModel {
 
     public NewNoteViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is new note fragment");
     }
 
     public LiveData<String> getText() {

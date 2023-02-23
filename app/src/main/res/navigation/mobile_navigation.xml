@@ -9,7 +9,14 @@
         android:id="@+id/navigation_notes"
         android:name="com.example.mobileappas1.ui.Notes.NoteFragment"
         android:label="@string/title_note"
-        tools:layout="@layout/fragment_note" />
+        tools:layout="@layout/fragment_note" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="contents"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_new_notes"
         android:name="com.example.mobileappas1.ui.Notes.newNote.NewNoteFragment"

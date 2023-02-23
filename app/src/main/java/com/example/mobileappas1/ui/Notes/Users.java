@@ -1,13 +1,15 @@
 package com.example.mobileappas1.ui.Notes;
 
-public class Users {
-    private User[] user;
+import java.util.ArrayList;
 
-    public User[] getUser() {
+public class Users {
+    private ArrayList<User> user;
+
+    public ArrayList<User> getUser() {
         return user;
     }
 
-    public void setUser(User[] value) {
+    public void setUser(ArrayList<User> value) {
         this.user = value;
     }
 }

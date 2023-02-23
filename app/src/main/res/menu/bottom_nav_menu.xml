@@ -23,5 +23,4 @@
         android:id="@+id/navigation_lang"
         android:icon="@drawable/baseline_language_24"
         android:title="@string/title_lang" />
-
 </menu>

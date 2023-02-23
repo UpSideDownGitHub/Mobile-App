@@ -8,5 +8,6 @@ public class NotesData
 
     public Users getUsers() { return users; }
     public void setUsers(Users value) { this.users = value; }
+
 }
 

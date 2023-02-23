@@ -2,6 +2,7 @@ package com.example.mobileappas1.ui.Notes;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -27,7 +29,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.security.spec.ECField;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class NoteFragment extends Fragment {
 
@@ -37,9 +42,10 @@ public class NoteFragment extends Fragment {
 
     NotesData notesData = new NotesData();
 
-    CalcAdapter adapter;
-    ArrayList notesForList = new ArrayList<>();
+    NotesAdapter adapter;
+    public int playerID;
 
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         NoteViewModel noteViewModel =
@@ -48,7 +54,9 @@ public class NoteFragment extends Fragment {
         binding = FragmentNoteBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        createFile();
+        adapter = new NotesAdapter(this.getContext(), new ArrayList<>());
+
+        //createFile();
         if (!isFilePresent(getContext(), "savedNotes.txt")) {
             Log.i("DEBUG", "NO FILE");
             createFile();
@@ -62,18 +70,11 @@ public class NoteFragment extends Fragment {
         // layout for vertical orientation
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-
         // Sending reference and data to Adapter
-        adapter = new CalcAdapter(this.getContext(), notesForList);
-
         // Setting Adapter to RecyclerView
         recyclerView.setAdapter(adapter);
-
-
         // check for button press
         binding.notesActionbutton.setOnClickListener( view -> addNewClicked(view));
-
-
         return root;
     }
 
@@ -87,6 +88,73 @@ public class NoteFragment extends Fragment {
         File file = new File(path);
         return file.exists();
     }
+
+    public void writeFile()
+    {
+        // create the Json file from the data
+        Gson gson = new Gson();
+        String json = gson.toJson(notesData);
+
+        // write the file
+        try {
+            outputStream = getContext().openFileOutput("savedNotes.txt", getContext().MODE_PRIVATE);
+            outputStream.write(json.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFile()
+    {
+        // read the file
+        FileInputStream fis = null;
+        try {
+            fis = getContext().openFileInput("savedNotes.txt");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        InputStreamReader isr = new InputStreamReader(fis);
+        BufferedReader bufferedReader = new BufferedReader(isr);
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while (true) {
+            try {
+                if (!((line = bufferedReader.readLine()) != null)) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            sb.append(line);
+        }
+
+        String json2 = sb.toString();
+
+        Gson gson2 = new Gson();
+        NotesData data = gson2.fromJson(json2, NotesData.class);
+        // data is the data that has been read
+        notesData = data;
+
+
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        playerID = sharedPref.getInt("playerID", 0);
+
+        //notesForList.clear();
+        adapter.clearList();
+        ArrayList<Note> savedData =  notesData.getUsers().getUser().get(playerID).getNotes();
+        for (int i = 0; i < savedData.size(); i++)
+        {
+            adapter.addValue(savedData.get(i).getTitle());
+            //notesForList.add(0, savedData.get(i).getTitle());
+        }
+        adapter.update();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
     public void createFile()
     {
         // note
@@ -162,87 +230,56 @@ public class NoteFragment extends Fragment {
         User user10 = new User();
         user10.setID("10");
         user10.setName("User 10");
-        user.setNotes(new Note[]{note});
-        user2.setNotes(new Note[]{note2});
-        user3.setNotes(new Note[]{note3});
-        user4.setNotes(new Note[]{note4});
-        user5.setNotes(new Note[]{note5});
-        user6.setNotes(new Note[]{note6});
-        user7.setNotes(new Note[]{note7});
-        user8.setNotes(new Note[]{note8});
-        user9.setNotes(new Note[]{note9});
-        user10.setNotes(new Note[]{note10});
+
+        ArrayList<Note> list1 = new ArrayList<Note>();
+        ArrayList<Note> list2 = new ArrayList<Note>();
+        ArrayList<Note> list3 = new ArrayList<Note>();
+        ArrayList<Note> list4 = new ArrayList<Note>();
+        ArrayList<Note> list5 = new ArrayList<Note>();
+        ArrayList<Note> list6 = new ArrayList<Note>();
+        ArrayList<Note> list7 = new ArrayList<Note>();
+        ArrayList<Note> list8 = new ArrayList<Note>();
+        ArrayList<Note> list9 = new ArrayList<Note>();
+        ArrayList<Note> list10 = new ArrayList<Note>();
+        list1.add(note);
+        list2.add(note2);
+        list3.add(note3);
+        list4.add(note4);
+        list5.add(note5);
+        list6.add(note6);
+        list7.add(note7);
+        list8.add(note8);
+        list9.add(note9);
+        list10.add(note10);
+        user.setNotes(list1);
+        user2.setNotes(list2);
+        user3.setNotes(list3);
+        user4.setNotes(list4);
+        user5.setNotes(list5);
+        user6.setNotes(list6);
+        user7.setNotes(list7);
+        user8.setNotes(list8);
+        user9.setNotes(list9);
+        user10.setNotes(list10);
 
 
         // users
         Users users = new Users();
-        users.setUser(new User[]{user,user2,user3,user4,user5,user6,user7,user8,user9,user10});
+        ArrayList<User> addedUsers = new ArrayList<User>();
+        addedUsers.add(user);
+        addedUsers.add(user2);
+        addedUsers.add(user3);
+        addedUsers.add(user4);
+        addedUsers.add(user5);
+        addedUsers.add(user6);
+        addedUsers.add(user7);
+        addedUsers.add(user8);
+        addedUsers.add(user9);
+        addedUsers.add(user10);
+        users.setUser(addedUsers);
 
         notesData.setUsers(users);
 
         writeFile();
-    }
-
-    public void writeFile()
-    {
-        // create the Json file from the data
-        Gson gson = new Gson();
-        String json = gson.toJson(notesData);
-
-        // write the file
-        try {
-            outputStream = getContext().openFileOutput("savedNotes.txt", getContext().MODE_PRIVATE);
-            outputStream.write(json.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void readFile()
-    {
-        // read the file
-        FileInputStream fis = null;
-        try {
-            fis = getContext().openFileInput("savedNotes.txt");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        InputStreamReader isr = new InputStreamReader(fis);
-        BufferedReader bufferedReader = new BufferedReader(isr);
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while (true) {
-            try {
-                if (!((line = bufferedReader.readLine()) != null)) break;
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            sb.append(line);
-        }
-
-        String json2 = sb.toString();
-
-        Gson gson2 = new Gson();
-        NotesData data = gson2.fromJson(json2, NotesData.class);
-        // data is the data that has been read
-        notesData = data;
-
-
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        int playerID = sharedPref.getInt("playerID", 0);
-
-        notesForList.clear();
-        Note[] savedData =  notesData.getUsers().getUser()[playerID].getNotes();
-        for (int i = 0; i < savedData.length; i++)
-        {
-            notesForList.add(0, savedData[i].getTitle());
-        }
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }
