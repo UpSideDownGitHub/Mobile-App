@@ -1,6 +1,8 @@
 package com.example.mobileappas1.ui.Notes;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,9 @@ public class NotesAdapter extends RecyclerView.Adapter<com.example.mobileappas1.
     ArrayList  noteList;
     Context context;
 
+    public int globalPosition;
+    private long currentNoteID;
+
 
     // Constructor for initialization
     public NotesAdapter(Context context, ArrayList givenNotes) {
@@ -35,6 +40,13 @@ public class NotesAdapter extends RecyclerView.Adapter<com.example.mobileappas1.
 
         // Passing view to ViewHolder
         com.example.mobileappas1.ui.Notes.NotesAdapter.ViewHolder viewHolder = new com.example.mobileappas1.ui.Notes.NotesAdapter.ViewHolder(view);
+
+        view.setOnClickListener(v -> {
+            globalPosition = viewHolder.getAbsoluteAdapterPosition();
+            currentNoteID = view.getId();
+            notifyDataSetChanged();
+        });
+
         return viewHolder;
     }
 
@@ -43,7 +55,20 @@ public class NotesAdapter extends RecyclerView.Adapter<com.example.mobileappas1.
     public void onBindViewHolder(@NonNull com.example.mobileappas1.ui.Notes.NotesAdapter.ViewHolder holder, int position) {
         // TypeCast Object to int type
         holder.text.setText((String) noteList.get(position));
+
+        if(position == globalPosition)
+        {
+            //change color like
+            holder.itemView.setBackgroundColor(Color.RED);
+            Log.i("DEBUG", "Note ID: " + currentNoteID);
+        }
+        else
+        {
+            //revert back to regular color
+            holder.itemView.setBackgroundColor(Color.BLACK);
+        }
     }
+
 
     @Override
     public int getItemCount() {

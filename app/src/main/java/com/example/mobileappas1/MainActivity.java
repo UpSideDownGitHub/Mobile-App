@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(MainActivity.this,SelectionActivity.class);
                     intent.putExtra("playerID", i);
+                    intent.putExtra("Player Name", usernames[i]);
                     startActivity(intent);
                     return;
                 }

@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobileappas1.R;
 import com.example.mobileappas1.databinding.FragmentNoteBinding;
-import com.example.mobileappas1.ui.Calc.CalcAdapter;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -29,10 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.security.spec.ECField;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class NoteFragment extends Fragment {
 
@@ -75,6 +71,10 @@ public class NoteFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         // check for button press
         binding.notesActionbutton.setOnClickListener( view -> addNewClicked(view));
+
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        playerID = sharedPref.getInt("playerID", 0);
+
         return root;
     }
 

@@ -10,6 +10,7 @@
     <string name="welcome">Welcome</string>
 
     <!-- ACTIVITY TITLES -->
+    <string name="title_miscellaneous">Miscellaneous</string>
     <string name="title_activity_selection">SelectionActivity</string>
     <string name="title_note">Note</string>
     <string name="title_quiz">Quiz</string>
