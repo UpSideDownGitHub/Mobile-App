@@ -46,6 +46,7 @@ public class SelectionActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_notes,
                 R.id.navigation_quiz,
+                R.id.navigation_quiz_question,
                 R.id.navigation_calc,
                 R.id.navigation_dice,
                 R.id.navigation_lang,
@@ -68,6 +69,8 @@ public class SelectionActivity extends AppCompatActivity {
                 title = "Edit Note - " + playerName;
             else if (destination.getId() == R.id.navigation_quiz)
                 title = "Quiz - " + playerName;
+            else if (destination.getId() == R.id.navigation_quiz_question)
+                title = "Questions - " + playerName;
             else if (destination.getId() == R.id.navigation_lang)
                 title = "Language - " + playerName;
             else if (destination.getId() == R.id.navigation_dice)

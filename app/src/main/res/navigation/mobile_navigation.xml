@@ -37,6 +37,12 @@
         tools:layout="@layout/fragment_quiz" />
 
     <fragment
+        android:id="@+id/navigation_quiz_question"
+        android:name="com.example.mobileappas1.ui.Quiz.QuizQuestionFragment"
+        android:label="@string/title_quiz"
+        tools:layout="@layout/fragment_quiz_question" />
+
+    <fragment
         android:id="@+id/navigation_calc"
         android:name="com.example.mobileappas1.ui.Calc.CalcFragment"
         android:label="@string/title_calc"

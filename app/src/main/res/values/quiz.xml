@@ -8,6 +8,9 @@
     <string name="start_quiz">Start Quiz</string>
     <string name="quiz_savescore">Save</string>
     <string name="quiz_contine">Continue</string>
+    <string name="math">Math</string>
+    <string name="history">History</string>
+    <string name="geography">Geography</string>
 
     <!-- Quiz Options -->
     <string name="quiz_1">Maths</string>
@@ -17,6 +20,7 @@
 
     <!-- User Error Messages -->
     <string name="no_quiz_selected">Select a Quiz</string>
+
 
     <string-array name="q1_questions">
         <item>What is the formula for a circumference of a circle?</item>
