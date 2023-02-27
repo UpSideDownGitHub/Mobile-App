@@ -1,7 +1,9 @@
 package com.example.mobileappas1.ui.Notes;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobileappas1.R;
@@ -21,15 +25,18 @@ import java.util.ArrayList;
 public class NotesAdapter extends RecyclerView.Adapter<com.example.mobileappas1.ui.Notes.NotesAdapter.ViewHolder> {
     ArrayList  noteList;
     Context context;
+    FragmentActivity activity;
 
     public int globalPosition;
     private long currentNoteID;
 
 
     // Constructor for initialization
-    public NotesAdapter(Context context, ArrayList givenNotes) {
+    public NotesAdapter(FragmentActivity givenActivity, Context context, ArrayList givenNotes) {
         this.context = context;
         this.noteList = givenNotes;
+        this.activity = givenActivity;
+
     }
 
     @NonNull
@@ -47,6 +54,14 @@ public class NotesAdapter extends RecyclerView.Adapter<com.example.mobileappas1.
             int pos = globalPosition;
             int index = noteList.indexOf(noteList.get(pos));
             Log.i("DEBUG", "You Pressed: " + index);
+
+
+            SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt("currentNoteID", index);
+            editor.apply();
+
+            Navigation.findNavController(view).navigate(R.id.navigation_edit_notes);
             update();
         });
 

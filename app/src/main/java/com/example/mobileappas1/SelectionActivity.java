@@ -49,7 +49,8 @@ public class SelectionActivity extends AppCompatActivity {
                 R.id.navigation_calc,
                 R.id.navigation_dice,
                 R.id.navigation_lang,
-                R.id.navigation_new_notes)
+                R.id.navigation_new_notes,
+                R.id.navigation_edit_notes)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_selection);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -63,6 +64,8 @@ public class SelectionActivity extends AppCompatActivity {
                 title = "Notes - " + playerName;
             else if (destination.getId() == R.id.navigation_new_notes)
                 title = "New Note - " + playerName;
+            else if (destination.getId() == R.id.navigation_edit_notes)
+                title = "Edit Note - " + playerName;
             else if (destination.getId() == R.id.navigation_quiz)
                 title = "Quiz - " + playerName;
             else if (destination.getId() == R.id.navigation_lang)

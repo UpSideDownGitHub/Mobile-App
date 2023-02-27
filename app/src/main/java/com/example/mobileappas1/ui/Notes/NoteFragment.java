@@ -50,7 +50,7 @@ public class NoteFragment extends Fragment {
         binding = FragmentNoteBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        adapter = new NotesAdapter(this.getContext(), new ArrayList<>());
+        adapter = new NotesAdapter(getActivity(), this.getContext(), new ArrayList<>());
 
         //createFile(); // ENABLE THIS TO REMAKE THE SAVED NOTES
         if (!isFilePresent(getContext(), "savedNotes.txt")) {

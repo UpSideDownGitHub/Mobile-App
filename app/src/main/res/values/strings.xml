@@ -9,6 +9,20 @@
     <string name="username_incorrect">Username Incorrect</string>
     <string name="welcome">Welcome</string>
 
+    <!-- Usernames -->
+    <string-array name="usernames">
+        <item>one</item>
+        <item>two</item>
+        <item>three</item>
+        <item>four</item>
+        <item>five</item>
+        <item>six</item>
+        <item>seven</item>
+        <item>eight</item>
+        <item>nine</item>
+        <item>ten</item>
+    </string-array>
+
     <!-- ACTIVITY TITLES -->
     <string name="title_miscellaneous">Miscellaneous</string>
     <string name="title_activity_selection">SelectionActivity</string>

@@ -51,8 +51,11 @@ public class NewNoteFragment extends Fragment {
                 new ViewModelProvider(this).get(NewNoteViewModel.class);
         binding = FragmentNewNoteBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        adapter = new NotesAdapter(this.getContext(), notesForList);
+        adapter = new NotesAdapter(getActivity(), this.getContext(), notesForList);
         binding.addnoteButton.setOnClickListener( view -> addNoteButtonPressed(view));
+
+
+
         return root;
     }
 

@@ -38,5 +38,4 @@ public class LanguageFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }
