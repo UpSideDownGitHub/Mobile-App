@@ -52,7 +52,7 @@ public class NoteFragment extends Fragment {
 
         adapter = new NotesAdapter(this.getContext(), new ArrayList<>());
 
-        //createFile();
+        //createFile(); // ENABLE THIS TO REMAKE THE SAVED NOTES
         if (!isFilePresent(getContext(), "savedNotes.txt")) {
             Log.i("DEBUG", "NO FILE");
             createFile();

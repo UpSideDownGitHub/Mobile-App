@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,8 +44,10 @@ public class NotesAdapter extends RecyclerView.Adapter<com.example.mobileappas1.
 
         view.setOnClickListener(v -> {
             globalPosition = viewHolder.getAbsoluteAdapterPosition();
-            currentNoteID = view.getId();
-            notifyDataSetChanged();
+            int pos = globalPosition;
+            int index = noteList.indexOf(noteList.get(pos));
+            Log.i("DEBUG", "You Pressed: " + index);
+            update();
         });
 
         return viewHolder;
@@ -56,6 +59,7 @@ public class NotesAdapter extends RecyclerView.Adapter<com.example.mobileappas1.
         // TypeCast Object to int type
         holder.text.setText((String) noteList.get(position));
 
+        // SET THE COLOR OF THE SELECTED OBJECT
         if(position == globalPosition)
         {
             //change color like
@@ -68,7 +72,6 @@ public class NotesAdapter extends RecyclerView.Adapter<com.example.mobileappas1.
             holder.itemView.setBackgroundColor(Color.BLACK);
         }
     }
-
 
     @Override
     public int getItemCount() {

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -60,10 +61,6 @@ public class NewNoteFragment extends Fragment {
         String title = binding.titleEdittext.getText().toString();
         String contents = binding.contentsEdittext.getText().toString();
 
-        Log.i("DEBUG", title);
-        Log.i("DEBUG", contents);
-        // need to take these two values and save them to the database
-
         // read the file
         FileInputStream fis = null;
         try {
@@ -93,6 +90,20 @@ public class NewNoteFragment extends Fragment {
         // get the player ID
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         playerID = sharedPref.getInt("playerID", 0);
+
+        // check if title already exists
+        ArrayList<Note> savedData =  notesData.getUsers().getUser().get(playerID).getNotes();
+        for (int i = 0; i < savedData.size(); i++)
+        {
+            if (savedData.get(i).getTitle().equals(title))
+            {
+                Toast.makeText(
+                        getContext(),
+                        R.string.same_note_title,
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
 
         // save the new data
         Note newNote = new Note();

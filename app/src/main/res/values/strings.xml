@@ -18,6 +18,9 @@
     <string name="title_dice">Dice</string>
     <string name="title_lang">Language</string>
 
+    <!-- Note Addition -->
+    <string name="same_note_title">Already Existing Title</string>
+
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
