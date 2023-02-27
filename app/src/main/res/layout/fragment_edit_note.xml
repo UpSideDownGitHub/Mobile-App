@@ -10,10 +10,20 @@
         android:id="@+id/editnote_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="75dp"
         android:layout_marginBottom="100dp"
-        android:text="Button"
+        android:text="@string/note_update"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/deletenote_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:text="@string/note_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editnote_button"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -35,11 +45,14 @@
         android:layout_marginTop="50dp"
         android:ems="10"
         android:gravity="top|left"
-        android:inputType="textPersonName"
+        android:inputType="textLongMessage|textMultiLine"
+        android:singleLine="false"
         android:text="Contents"
         android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edittitle_edittext" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

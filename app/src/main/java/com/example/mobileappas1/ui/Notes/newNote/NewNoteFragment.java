@@ -1,8 +1,11 @@
 package com.example.mobileappas1.ui.Notes.newNote;
 
+import static java.time.format.DateTimeFormatter.ISO_DATE;
+
 import android.app.Notification;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +37,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class NewNoteFragment extends Fragment {
@@ -52,9 +56,24 @@ public class NewNoteFragment extends Fragment {
         binding = FragmentNewNoteBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         adapter = new NotesAdapter(getActivity(), this.getContext(), notesForList);
+
+        // add note
         binding.addnoteButton.setOnClickListener( view -> addNoteButtonPressed(view));
+        // cancel note making
+        binding.cancelnoteButton.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.navigation_notes);
+        });
 
+        // get the player ID
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        playerID = sharedPref.getInt("playerID", 0);
 
+        // set the title of the note to the current date and name of the player
+        String[] usernames = getResources().getStringArray(R.array.usernames);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            binding.titleEdittext.setText(usernames[playerID] + " " + LocalDateTime.now().format(ISO_DATE));
+        }
 
         return root;
     }
@@ -90,9 +109,7 @@ public class NewNoteFragment extends Fragment {
         // data is the data that has been read
         notesData = data;
 
-        // get the player ID
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        playerID = sharedPref.getInt("playerID", 0);
+
 
         // check if title already exists
         ArrayList<Note> savedData =  notesData.getUsers().getUser().get(playerID).getNotes();

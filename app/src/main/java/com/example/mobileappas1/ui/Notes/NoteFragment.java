@@ -69,6 +69,7 @@ public class NoteFragment extends Fragment {
         // Sending reference and data to Adapter
         // Setting Adapter to RecyclerView
         recyclerView.setAdapter(adapter);
+
         // check for button press
         binding.notesActionbutton.setOnClickListener( view -> addNewClicked(view));
 

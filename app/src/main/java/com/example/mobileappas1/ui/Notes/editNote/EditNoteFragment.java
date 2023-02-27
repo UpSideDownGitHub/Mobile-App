@@ -61,9 +61,50 @@ public class EditNoteFragment extends Fragment {
         binding.edittitleEdittext.setText(title);
         binding.editcontentsEdittext.setText(contents);
 
+        // save note
         binding.editnoteButton.setOnClickListener( view -> saveEditedNote(view));
+        // delte note
+        binding.deletenoteButton.setOnClickListener(view -> deleteNote(view));
 
         return root;
+    }
+    public  void deleteNote(View view)
+    {
+        // read the file
+        FileInputStream fis = null;
+        try {
+            fis = getContext().openFileInput("savedNotes.txt");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        InputStreamReader isr = new InputStreamReader(fis);
+        BufferedReader bufferedReader = new BufferedReader(isr);
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while (true) {
+            try {
+                if (!((line = bufferedReader.readLine()) != null)) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            sb.append(line);
+        }
+        String json2 = sb.toString();
+        Gson gson2 = new Gson();
+        NotesData data = gson2.fromJson(json2, NotesData.class);
+
+        // data is the data that has been read
+        notesData = data;
+
+        // remove the selected note
+        // Update Title
+        ArrayList notes = notesData.getUsers().getUser().get(playerID).getNotes();
+        notes.remove(noteID);
+        notesData.getUsers().getUser().get(playerID).setNotes(notes);
+
+        writeFile();
+
+        Navigation.findNavController(view).navigate(R.id.navigation_notes);
     }
 
     public void saveEditedNote(View view)
@@ -96,10 +137,6 @@ public class EditNoteFragment extends Fragment {
 
         // data is the data that has been read
         notesData = data;
-
-        // get the player ID
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        playerID = sharedPref.getInt("playerID", 0);
 
         // check if title already exists
         ArrayList<Note> savedData =  notesData.getUsers().getUser().get(playerID).getNotes();

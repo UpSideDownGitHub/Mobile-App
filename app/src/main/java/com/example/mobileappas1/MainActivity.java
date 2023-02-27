@@ -13,8 +13,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    public String[] usernames = {"one", "two", "three", "four", "five",
-                                 "six", "seven", "eight", "nine", "ten"};
+    public String[] usernames;
     public String[] passwords = {"one", "two", "three", "four", "five",
                                  "six", "seven", "eight", "nine", "ten"};
 
@@ -26,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
         // change the title of the application
         getSupportActionBar().setTitle("");
+
+        usernames = getResources().getStringArray(R.array.usernames);
 
         Button loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener( view -> checkLogin());

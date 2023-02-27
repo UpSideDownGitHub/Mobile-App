@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Large Titles -->
+    <string name="quiz_title">QUIZ</string>
+    <string name="quiz_results">RESULTS</string>
+
+    <!-- Buttons -->
+    <string name="start_quiz">Start Quiz</string>
+    <string name="quiz_savescore">Save</string>
+    <string name="quiz_contine">Continue</string>
+
+    <!-- Quiz Options -->
+    <string name="quiz_1">Maths</string>
+    <string name="quiz_2">Geography</string>
+    <string name="quiz_3">History</string>
+
+
+    <!-- User Error Messages -->
+    <string name="no_quiz_selected">Select a Quiz</string>
+
+    <string-array name="q1_questions">
+        <item>What is the formula for a circumference of a circle?</item>
+        <item>What is the area of a triangle?</item>
+        <item>Pythagoras’ theorem gives a formula for the length of the hypotenuse of a (right angled) triangle based on the lengths of the other sides? The length of the hypotenuse = …..what?</item>
+        <item>What is the surface area of a sphere?</item>
+        <item>In the quadratic formula, x=… what?</item>
+        <item>What is the formula for the volume of a cone (or pyramid)?</item>
+        <item>In Newton’s second law of motion, Force equals what?</item>
+        <item>What is the formula for the volume of a sphere?</item>
+        <item>According to Einstein’s theory of relativity, what does c equal?</item>
+        <item>What is the volume of a cylinder?</item>
+    </string-array>
+    <string-array name="q1_answers"> <!-- True, False, False, False -->
+        <item>2πr</item>
+        <item>2πr²</item>
+        <item>2π²r</item>
+        <item>πr²</item>
+
+        <item>BxH/2</item>
+        <item>B/2xH</item>
+        <item>Bx2/H</item>
+        <item>2/BxH</item>
+
+        <item>√(a²+b²)</item>
+        <item>√(a+b²)</item>
+        <item>√(a²+b)</item>
+        <item>(a²+b²)</item>
+
+        <item>4πr²</item>
+        <item>2πr²</item>
+        <item>4π²r</item>
+        <item>2π²r</item>
+
+        <item>x = (−b ± √(b2 − 4ac)}/ 2a</item>
+        <item>x = (b ± √(b2 − 4ac)}/ a</item>
+        <item>x = (−b ± √(b − 2ac)}/ 2a</item>
+        <item>x = (b ± √(b − 4ba)}/ 2c</item>
+
+        <item>v = 1/3(b x h)</item>
+        <item>v = 1/4(b x h)²</item>
+        <item>v = 1/3(b² x h)</item>
+        <item>v = √(b x h)</item>
+
+        <item>F = ma</item>
+        <item>F = ma²</item>
+        <item>F = m²a</item>
+        <item>F = √ma</item>
+
+        <item>v = 4/3 (πr³)</item>
+        <item>v = 1/2 (πr)</item>
+        <item>v = 1/4 √(πr³)</item>
+        <item>v = 4/3 (πr²)</item>
+
+        <item>c = √(E/m)</item>
+        <item>c = (E²/m²)</item>
+        <item>c = (E/m²)</item>
+        <item>c = (E/m)²</item>
+
+        <item>v = πr²h</item>
+        <item>v = πr³h</item>
+        <item>v = πrh²</item>
+        <item>v = π²rh</item>
+    </string-array>
+</resources>
