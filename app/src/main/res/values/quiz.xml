@@ -85,4 +85,132 @@
         <item>v = πrh²</item>
         <item>v = π²rh</item>
     </string-array>
+
+    <string-array name="q2_questions">
+        <item>As recently dramatised in a critically acclaimed miniseries, what year did the Chernobyl disaster occur?</item>
+        <item>Who was Lord Mayor of London four times between 1397 and 1419, and the inspiration for a classic English folk tale?</item>
+        <item>Who was the second President of the United States?</item>
+        <item>Who was the only one of Henry VIIIs wives to receive a Queens funeral?</item>
+        <item>Which British archaeologist discovered Tutankhamuns tomb?</item>
+        <item>Who was the leader of Britains ill-fated Antarctic expedition which was one of the first to reach the South Pole in 1912?</item>
+        <item>In which European country was there a civil war between 1946 and 1949?</item>
+        <item>Which 13th Century Scottish knight did Mel Gibson portray in Braveheart?</item>
+        <item>Which war was fought in South Africa between 1899 and 1902?</item>
+        <item>In which country did the Second World War Battles of El Alamein take place?</item>
+    </string-array>
+    <string-array name="q2_answers"> <!-- True, False, False, False -->
+        <item>1986</item>
+        <item>1982</item>
+        <item>1979</item>
+        <item>1989</item>
+
+        <item>Richard Whittington</item>
+        <item>Richard Whitling</item>
+        <item>Reginald Whittington</item>
+        <item>Reginald Whitling</item>
+
+        <item>John Adams</item>
+        <item>John Smith</item>
+        <item>Jerry Adams</item>
+        <item>Jason Adams</item>
+
+        <item>Jane Seymour</item>
+        <item>Jannet Segoier</item>
+        <item>Jane Seymour</item>
+        <item>Jannet Segoier</item>
+
+        <item>Howard Carter</item>
+        <item>Howard Cartern</item>
+        <item>Howard Certer</item>
+        <item>Howard Carer</item>
+
+        <item>Robert F. Scott</item>
+        <item>Robert D. Scott</item>
+        <item>Robert C. Scott</item>
+        <item>Robert A. Scott</item>
+
+        <item>Greece</item>
+        <item>Croatia</item>
+        <item>France</item>
+        <item>Hungary</item>
+
+        <item>William Wallace</item>
+        <item>Andrew Moray</item>
+        <item>James Douglas</item>
+        <item>William Alexander</item>
+
+        <item>Second Boer War</item>
+        <item>Boer War</item>
+        <item>Third Boer War</item>
+        <item>Fourth Boer War</item>
+
+        <item>Egypt</item>
+        <item>Libya</item>
+        <item>Sudan</item>
+        <item>Israel</item>
+    </string-array>
+
+    <string-array name="q3_questions">
+        <item>Which country has the longest coastline in the world?</item>
+        <item>What is the capital of Malta?</item>
+        <item>Which country is the newest in the world to be recognised by the UN?</item>
+        <item>In which UK city would you find the river Clyde?</item>
+        <item>What is the oldest recorded town in the UK?</item>
+        <item>If you travelled to the city of Volgograd, which country would be in?</item>
+        <item>What is the name of the largest river to flow through Paris?</item>
+        <item>What did Ceylon change its name to in 1972?</item>
+        <item>What is the most populous city in the US state of Illinois?</item>
+        <item>What is the highest mountain in Britain?</item>
+    </string-array>
+    <string-array name="q3_answers"> <!-- True, False, False, False -->
+        <item>Canada</item>
+        <item>Norway</item>
+        <item>Indonesia</item>
+        <item>Russia</item>
+
+        <item>Valetta</item>
+        <item>Lima</item>
+        <item>Caracas</item>
+        <item>Bamako</item>
+
+        <item>South Sudan</item>
+        <item>Kosovo</item>
+        <item>Serbia</item>
+        <item>Montenegro</item>
+
+        <item>Glasgow</item>
+        <item>Aberdeen</item>
+        <item>Armagh</item>
+        <item>Bangor</item>
+
+        <item>Colchester</item>
+        <item>Carrickfergus</item>
+        <item>Selby</item>
+        <item>Lowestoft</item>
+
+        <item>Russia</item>
+        <item>Kazakhstan</item>
+        <item>Mongolia</item>
+        <item>Belarus</item>
+
+        <item>Seine</item>
+        <item>Loire</item>
+        <item>Garonne</item>
+        <item>Rhone</item>
+
+        <item>Sri Lanka</item>
+        <item>Galle</item>
+        <item>Kandy</item>
+        <item>Kurunegala</item>
+
+        <item>Chicago</item>
+        <item>Joliet</item>
+        <item>Rockford</item>
+        <item>Springfield</item>
+
+        <item>Ben Nevis</item>
+        <item>Ben Macdui</item>
+        <item>Braeriach</item>
+        <item>Cairn Toul</item>
+    </string-array>
 </resources>

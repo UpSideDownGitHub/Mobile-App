@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import com.example.mobileappas1.databinding.FragmentQuizQuestionBinding;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class QuizQuestionFragment extends Fragment {
 
@@ -50,8 +52,14 @@ public class QuizQuestionFragment extends Fragment {
             questions = getResources().getStringArray(R.array.q1_questions);
             answers = getResources().getStringArray(R.array.q1_answers);
         }
-        else
-            Log.i("DEBUG", "THiS IS AN ERROR FOR NOW BUT WILL BE IMPLEMENTED LATER");
+        else if (quizID == 2) {
+            questions = getResources().getStringArray(R.array.q2_questions);
+            answers = getResources().getStringArray(R.array.q2_answers);
+        }
+        else {
+            questions = getResources().getStringArray(R.array.q3_questions);
+            answers = getResources().getStringArray(R.array.q3_answers);
+        }
 
         updateAll();
 
@@ -86,15 +94,25 @@ public class QuizQuestionFragment extends Fragment {
 
     public void checkForCorrect()
     {
-        if(currentAnswers[answerChosen] == answers[currentQuestion * 4])
+        if (currentQuestion == 10)
+        {
+            Bundle bundle = new Bundle();
+            bundle.putInt("correct", correctAnswers);
+            Navigation.findNavController(getView()).navigate(R.id.navigation_quiz_results, bundle);
+            return;
+        }
+
+        if(currentAnswers[answerChosen - 1] == answers[(currentQuestion-1) * 4])
             correctAnswers++;
     }
 
     public void updateAll()
     {
+        if (currentQuestion == 10)
+            return;
         // update possible answers
-        currentAnswers = new String[]{answers[currentQuestion * 4], answers[currentQuestion * 4] + 1,
-                answers[currentQuestion * 4] + 2, answers[currentQuestion * 4] + 3};
+        currentAnswers = new String[]{answers[currentQuestion * 4], answers[currentQuestion * 4 + 1] ,
+                answers[currentQuestion * 4 + 2] , answers[currentQuestion * 4 + 3] };
         List<String> stringList = Arrays.asList(currentAnswers);
         Collections.shuffle(stringList);
         currentAnswers = stringList.toArray(currentAnswers);

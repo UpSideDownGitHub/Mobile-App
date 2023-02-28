@@ -51,7 +51,10 @@ public class QuizFragment extends Fragment {
 
         binding.startquizButton.setOnClickListener(view -> {
             if(!maths && !history && !geography)
+            {
                 Toast.makeText(getContext(), R.string.no_quiz_selected, Toast.LENGTH_SHORT).show();
+                return;
+            }
             // if maths then set as 1, then if geography set as 2 then finally set to 3 if history
             int quizID = maths ? 1 : history ? 2 : 3;
             SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
