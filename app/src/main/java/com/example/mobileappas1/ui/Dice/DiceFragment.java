@@ -59,12 +59,18 @@ public class DiceFragment extends Fragment {
             Toast.makeText(getContext(), R.string.numbererror_tolarge, Toast.LENGTH_SHORT).show();
         }
 
-        if (minValue > maxValue)
+        try {
+            Random rand = new Random();
+            int randomNumber = rand.nextInt((maxValue + 1)-minValue) + minValue;
+            binding.diceanswerText.setText(Integer.toString(randomNumber));
+        }
+        catch (Exception e)
+        {
+            Random rand = new Random();
+            int randomNumber = rand.nextInt((6 + 1)-1) + 1;
+            binding.diceanswerText.setText(Integer.toString(randomNumber));
             Toast.makeText(getContext(), R.string.numbererror_minlarger, Toast.LENGTH_SHORT).show();
-
-        Random rand = new Random();
-        int randomNumber = rand.nextInt((maxValue + 1)-minValue) + minValue;
-        binding.diceanswerText.setText(Integer.toString(randomNumber));
+        }
     }
 
 

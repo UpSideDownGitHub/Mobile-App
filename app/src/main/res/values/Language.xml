@@ -11,7 +11,10 @@
     <string name="lang_continue_button">Continue</string>
     <string name="lang_currentquestion_text">0/10</string>
 
-    <!-- Results -->
+    <!-- errors -->
+    <string name="error_selectitem">Must Select Option</string>
+
+    <!-- Results  -->
     <string name="lang_resulttitle_text">Results</string>
     <string name="lang_correctanswers_text">Correct:</string>
     <string name="lang_percentcorrect_text">Percentage Correct:</string>
