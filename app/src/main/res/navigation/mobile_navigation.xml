@@ -63,4 +63,14 @@
         android:name="com.example.mobileappas1.ui.Language.LanguageFragment"
         android:label="@string/title_lang"
         tools:layout="@layout/fragment_language" />
+    <fragment
+        android:id="@+id/navigation_lang_question"
+        android:name="com.example.mobileappas1.ui.Language.LanguageQuestionFragment"
+        android:label="@string/title_lang"
+        tools:layout="@layout/fragment_language_question" />
+    <fragment
+        android:id="@+id/navigation_lang_result"
+        android:name="com.example.mobileappas1.ui.Language.LanguageResultFragment"
+        android:label="@string/title_lang"
+        tools:layout="@layout/fragment_language_result" />
 </navigation>

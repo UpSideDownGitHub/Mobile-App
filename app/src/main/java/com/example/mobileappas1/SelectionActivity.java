@@ -51,6 +51,8 @@ public class SelectionActivity extends AppCompatActivity {
                 R.id.navigation_calc,
                 R.id.navigation_dice,
                 R.id.navigation_lang,
+                R.id.navigation_lang_question,
+                R.id.navigation_lang_result,
                 R.id.navigation_new_notes,
                 R.id.navigation_edit_notes)
                 .build();
@@ -76,6 +78,10 @@ public class SelectionActivity extends AppCompatActivity {
                 title = "Results - " + playerName;
             else if (destination.getId() == R.id.navigation_lang)
                 title = "Language - " + playerName;
+            else if (destination.getId() == R.id.navigation_lang_question)
+                title = "Questions - " + playerName;
+            else if (destination.getId() == R.id.navigation_lang_result)
+                title = "Results - " + playerName;
             else if (destination.getId() == R.id.navigation_dice)
                 title = "Dice - " + playerName;
             else if (destination.getId() == R.id.navigation_calc)

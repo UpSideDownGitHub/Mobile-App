@@ -2,38 +2,32 @@ package com.example.mobileappas1.ui.Language;
 
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-//import com.example.mobileappas1.databinding.FragmentNotificationsBinding;
 import com.example.mobileappas1.R;
 import com.example.mobileappas1.databinding.FragmentLanguageBinding;
-import com.example.mobileappas1.ui.Calc.CalcViewModel;
+import com.example.mobileappas1.databinding.FragmentLanguageResultBinding;
 
-public class LanguageFragment extends Fragment {
+public class LanguageResultFragment extends Fragment {
 
-    private FragmentLanguageBinding binding;
+    private FragmentLanguageResultBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        LanguageViewModel langViewModel =
-                new ViewModelProvider(this).get(LanguageViewModel.class);
+        LanguageResultViewModel langViewModel =
+                new ViewModelProvider(this).get(LanguageResultViewModel.class);
 
-        binding = FragmentLanguageBinding.inflate(inflater, container, false);
+        binding = FragmentLanguageResultBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        binding.startButton.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigate(R.id.navigation_lang_question);
-        });
 
         return root;
     }
@@ -43,4 +37,5 @@ public class LanguageFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

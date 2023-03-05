@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Language.LanguageQuestionFragment">
+
+    <ProgressBar
+        android:id="@+id/lang_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:max="10"
+        android:progress="0"
+        app:layout_constraintEnd_toStartOf="@+id/lang_currentquestion_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lang_currentquestion_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/lang_currentquestion_text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lang_instructions_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/lang_instruction_text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lang_progressbar" />
+
+    <TextView
+        android:id="@+id/lang_lan1_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/lang_lang1_text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lang_instructions_text" />
+
+    <ToggleButton
+        android:id="@+id/lang1_option1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/lang_lang1_text"
+        android:textOff="@string/lang_lang1_text"
+        android:textOn="@string/lang_lang1_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lang1_option2" />
+
+    <ToggleButton
+        android:id="@+id/lang1_option3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="@string/lang_lang1_text"
+        android:textOff="@string/lang_lang1_text"
+        android:textOn="@string/lang_lang1_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lang1_option2" />
+
+    <ToggleButton
+        android:id="@+id/lang1_option2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/lang_lang1_text"
+        android:textOff="@string/lang_lang1_text"
+        android:textOn="@string/lang_lang1_text"
+        app:layout_constraintEnd_toStartOf="@+id/lang1_option3"
+        app:layout_constraintStart_toEndOf="@+id/lang1_option1"
+        app:layout_constraintTop_toBottomOf="@+id/lang_lan1_text" />
+
+    <TextView
+        android:id="@+id/lang_lang2_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/lang_lang2_text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lang1_option2" />
+
+    <ToggleButton
+        android:id="@+id/lang2_option2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/lang_lang1_text"
+        android:textOff="@string/lang_lang1_text"
+        android:textOn="@string/lang_lang1_text"
+        app:layout_constraintEnd_toStartOf="@+id/lang1_option3"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toEndOf="@+id/lang1_option1"
+        app:layout_constraintTop_toBottomOf="@+id/lang_lang2_text" />
+
+    <ToggleButton
+        android:id="@+id/lang2_option1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/lang_lang1_text"
+        android:textOff="@string/lang_lang1_text"
+        android:textOn="@string/lang_lang1_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lang2_option2" />
+
+    <ToggleButton
+        android:id="@+id/lang2_option3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/lang_lang1_text"
+        android:textOff="@string/lang_lang1_text"
+        android:textOn="@string/lang_lang1_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lang2_option2" />
+
+    <Button
+        android:id="@+id/lang_contine_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:text="@string/lang_continue_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

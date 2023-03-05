@@ -43,6 +43,15 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- DICE -->
+    <string name="minvalue">Min</string>
+    <string name="maxvalue">Max</string>
+    <string name="defaultvalues">Defualt: 1-6</string>
+    <string name="generatenumberbutton">Generate</string>
+
+    <string name="numbererror_tolarge">Number To Large</string>
+    <string name="numbererror_minlarger">Min is Larger</string>
+
     <!-- CALCULATOR -->
     <!-- calculator line -->
     <string name="calc_default">Enter Sum...</string>

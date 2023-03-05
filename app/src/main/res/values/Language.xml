@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Language -->
+    <string name="lang_start_button">Start</string>
+    <string name="lang_title_text">Learn Language</string>
+
+    <!-- Question -->
+    <string name="lang_instruction_text">Pair the Words</string>
+    <string name="lang_lang1_text">French</string>
+    <string name="lang_lang2_text">English</string>
+    <string name="lang_continue_button">Continue</string>
+    <string name="lang_currentquestion_text">0/10</string>
+
+    <!-- Results -->
+    <string name="lang_resulttitle_text">Results</string>
+    <string name="lang_correctanswers_text">Correct:</string>
+    <string name="lang_percentcorrect_text">Percentage Correct:</string>
+    <string name="lang_resultcontinue_button">Continue:</string>
+
+    <!-- Question & Answers -->
+    <string-array name="lang_q1">
+        <!-- FOR ALL OF THESE THE FIRST ITEM OF EACH IS THE CORRECT ANSWER THEN THE WILL BE RANDOMISED IN QUIZ -->
+        <item>être</item>
+        <item>avoir</item>
+        <item>vous</item>
+
+        <item>to be</item>
+        <item>to have</item>
+        <item>to want</item>
+    </string-array>
+    <string-array name="lang_q2">
+        <item>Oui</item>
+        <item>Oiu</item>
+        <item>Je</item>
+
+        <item>yes</item>
+        <item>no</item>
+        <item>maby</item>
+    </string-array>
+    <string-array name="lang_q3">
+        <item>Et</item>
+        <item>At</item>
+        <item>Fet</item>
+
+        <item>and</item>
+        <item>plus</item>
+        <item>with</item>
+    </string-array>
+    <string-array name="lang_q4">
+        <item>Oui</item>
+        <item>Oiu</item>
+        <item>Je</item>
+
+        <item>yes</item>
+        <item>no</item>
+        <item>maby</item>
+    </string-array>
+    <string-array name="lang_q5">
+        <item>Je</item>
+        <item>Tu</item>
+        <item>Elle</item>
+
+        <item>I</item>
+        <item>We</item>
+        <item>You</item>
+    </string-array>
+    <string-array name="lang_q6">
+        <item>Vous</item>
+        <item>Je</item>
+        <item>Elles</item>
+
+        <item>We</item>
+        <item>You</item>
+        <item>They</item>
+    </string-array>
+    <string-array name="lang_q7">
+        <item>Je mange</item>
+        <item>Je suis</item>
+        <item>Je fais</item>
+
+        <item>I eat</item>
+        <item>I know</item>
+        <item>I want</item>
+    </string-array>
+    <string-array name="lang_q8">
+        <item>Merci</item>
+        <item>Au revoir</item>
+        <item>De rien</item>
+
+        <item>Thank you</item>
+        <item>please</item>
+        <item>hi/bye</item>
+    </string-array>
+    <string-array name="lang_q9">
+        <item>Dix</item>
+        <item>Huit</item>
+        <item>Cinq</item>
+
+        <item>10</item>
+        <item>9</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="lang_q10">
+        <item>Que</item>
+        <item>Et</item>
+        <item>Ou</item>
+
+        <item>That</item>
+        <item>when</item>
+        <item>Because</item>
+    </string-array>
+
+</resources>

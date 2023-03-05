@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(
                             getApplicationContext(),
                             R.string.welcome,
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(MainActivity.this,SelectionActivity.class);
                     intent.putExtra("playerID", i);
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(
                         getApplicationContext(),
                         R.string.password_incorrect,
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
                 return;
             }
         }
@@ -68,6 +68,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(
                 getApplicationContext(),
                 R.string.username_incorrect,
-                Toast.LENGTH_LONG).show();
+                Toast.LENGTH_SHORT).show();
     }
 }
