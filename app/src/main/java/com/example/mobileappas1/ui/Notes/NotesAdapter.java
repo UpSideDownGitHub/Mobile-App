@@ -74,6 +74,7 @@ public class NotesAdapter extends RecyclerView.Adapter<com.example.mobileappas1.
         // TypeCast Object to int type
         holder.text.setText((String) noteList.get(position));
 
+        /*
         // SET THE COLOR OF THE SELECTED OBJECT
         if(position == globalPosition)
         {
@@ -86,6 +87,7 @@ public class NotesAdapter extends RecyclerView.Adapter<com.example.mobileappas1.
             //revert back to regular color
             holder.itemView.setBackgroundColor(Color.BLACK);
         }
+        */
     }
 
     @Override
