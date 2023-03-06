@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         // change the title of the application
         getSupportActionBar().setTitle("");
+        getSupportActionBar().hide();
 
         usernames = getResources().getStringArray(R.array.usernames);
 

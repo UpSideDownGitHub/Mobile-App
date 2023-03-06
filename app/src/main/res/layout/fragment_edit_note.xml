@@ -4,29 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_image"
     tools:context=".ui.Notes.editNote.EditNoteFragment">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/editnote_button"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="75dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="75dp"
         android:text="@string/note_update"
+        android:textColor="@color/white"
+        android:background="@drawable/background_button_detailed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/deletenote_button"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="75dp"
+        android:background="@drawable/background_button_detailed"
         android:text="@string/note_delete"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editnote_button"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <ImageView
+        android:id="@+id/edittitle_edittext_bg"
+        android:layout_width="360dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_button"
+        android:alpha="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edittitle_edittext"
         android:layout_width="350dp"
         android:layout_height="75dp"
@@ -34,20 +50,33 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Title"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <ImageView
+        android:id="@+id/editcontents_edittext_background"
+        android:layout_width="360dp"
+        android:layout_height="575dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/background_button"
+        android:alpha="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edittitle_edittext"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editcontents_edittext"
         android:layout_width="350dp"
-        android:layout_height="400dp"
+        android:layout_height="565dp"
         android:layout_marginTop="50dp"
         android:ems="10"
         android:gravity="top|left"
         android:inputType="textLongMessage|textMultiLine"
         android:singleLine="false"
         android:text="Contents"
+        android:textColor="@color/white"
         android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
