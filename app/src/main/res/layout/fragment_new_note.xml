@@ -58,7 +58,7 @@
     <ImageView
         android:id="@+id/bg"
         android:layout_width="360dp"
-        android:layout_height="575dp"
+        android:layout_height="505dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/background_button"
         android:alpha="0.5"
@@ -69,7 +69,7 @@
     <EditText
         android:id="@+id/contents_edittext"
         android:layout_width="350dp"
-        android:layout_height="565dp"
+        android:layout_height="495dp"
         android:layout_marginTop="50dp"
         android:ems="10"
         android:gravity="top|left"

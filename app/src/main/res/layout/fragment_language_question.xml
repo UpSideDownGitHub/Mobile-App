@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_image"
     tools:context=".ui.Language.LanguageQuestionFragment">
 
     <ProgressBar
@@ -12,6 +13,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:progressDrawable="@drawable/customprogressbar"
         android:max="10"
         android:progress="0"
         app:layout_constraintEnd_toStartOf="@+id/lang_currentquestion_text"
@@ -25,28 +27,48 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:text="@string/lang_currentquestion_text"
+        android:textColor="@color/white"
+        android:background="#00FFFFFF"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/lang_instructions_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+     <TextView
+         android:id="@+id/lang_instructions_text"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="50dp"
+         android:text="@string/lang_instruction_text"
+         android:textColor="@color/white"
+         android:textSize="25sp"
+         android:background="#00FFFFFF"
+         android:textAlignment="center"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/lang_progressbar" />
+
+    <ImageView
+        android:id="@+id/lang_lan1_text_bg"
+        android:layout_width="380dp"
+        android:layout_height="140dp"
         android:layout_marginTop="50dp"
-        android:text="@string/lang_instruction_text"
-        android:textAlignment="center"
+        android:background="@drawable/background_button_detailed"
+        android:alpha="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lang_progressbar" />
+        app:layout_constraintTop_toBottomOf="@+id/lang_instructions_text" />
 
     <TextView
         android:id="@+id/lang_lan1_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
         android:text="@string/lang_lang1_text"
         android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lang_instructions_text" />
@@ -56,6 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:background="@drawable/customtoggle"
         android:text="@string/lang_lang1_text"
         android:textOff="@string/lang_lang1_text"
         android:textOn="@string/lang_lang1_text"
@@ -67,6 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
+        android:background="@drawable/customtoggle"
         android:text="@string/lang_lang1_text"
         android:textOff="@string/lang_lang1_text"
         android:textOn="@string/lang_lang1_text"
@@ -78,6 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:background="@drawable/customtoggle"
         android:text="@string/lang_lang1_text"
         android:textOff="@string/lang_lang1_text"
         android:textOn="@string/lang_lang1_text"
@@ -85,13 +110,27 @@
         app:layout_constraintStart_toEndOf="@+id/lang1_option1"
         app:layout_constraintTop_toBottomOf="@+id/lang_lan1_text" />
 
+    <ImageView
+        android:id="@+id/lang_lang2_text_bg"
+        android:layout_width="380dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/background_button_detailed"
+        android:alpha="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lang1_option2" />
+
     <TextView
         android:id="@+id/lang_lang2_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="110dp"
+        android:background="#00FFFFFF"
         android:text="@string/lang_lang2_text"
         android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lang1_option2" />
@@ -101,6 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:background="@drawable/customtoggle"
         android:text="@string/lang_lang1_text"
         android:textOff="@string/lang_lang1_text"
         android:textOn="@string/lang_lang1_text"
@@ -114,6 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:background="@drawable/customtoggle"
         android:text="@string/lang_lang1_text"
         android:textOff="@string/lang_lang1_text"
         android:textOn="@string/lang_lang1_text"
@@ -125,18 +166,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/customtoggle"
         android:text="@string/lang_lang1_text"
         android:textOff="@string/lang_lang1_text"
         android:textOn="@string/lang_lang1_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/lang2_option2" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/lang_contine_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="100dp"
         android:text="@string/lang_continue_button"
+        android:background="@drawable/background_button_detailed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

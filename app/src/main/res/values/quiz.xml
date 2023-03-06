@@ -20,6 +20,9 @@
 
     <!-- User Error Messages -->
     <string name="no_quiz_selected">Select a Quiz</string>
+    <string name="correct">Correct:</string>
+    <string name="textview">TextView</string>
+    <string name="percentage">Percentage:</string>
 
 
     <string-array name="q1_questions">
