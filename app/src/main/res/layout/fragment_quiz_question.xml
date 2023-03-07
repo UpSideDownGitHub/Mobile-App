@@ -56,8 +56,8 @@
         android:layout_width="360dp"
         android:layout_height="210dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/background_button"
-        android:alpha="0.5"
+        android:alpha="0.3"
+        android:background="@drawable/background_button_detailed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quiz_progress" />
