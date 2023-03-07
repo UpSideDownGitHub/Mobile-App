@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,11 +16,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.mobileappas1.R;
 import com.example.mobileappas1.databinding.FragmentQuizBinding;
 import com.example.mobileappas1.databinding.FragmentQuizQuestionBinding;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -34,6 +37,7 @@ public class QuizQuestionFragment extends Fragment {
     private String[] answers;
     private String[] currentAnswers;
 
+    private List<Integer> imageAssets = new ArrayList<Integer>();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -45,6 +49,7 @@ public class QuizQuestionFragment extends Fragment {
         View root = binding.getRoot();
 
         currentQuestion = 0;
+
 
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         quizID = sharedPref.getInt("quizID", 0);
@@ -60,7 +65,7 @@ public class QuizQuestionFragment extends Fragment {
             questions = getResources().getStringArray(R.array.q3_questions);
             answers = getResources().getStringArray(R.array.q3_answers);
         }
-
+        getImages();
         updateAll();
 
 
@@ -128,6 +133,48 @@ public class QuizQuestionFragment extends Fragment {
         binding.answerB.setText(currentAnswers[1]);
         binding.answerC.setText(currentAnswers[2]);
         binding.answerD.setText(currentAnswers[3]);
+
+        // update the image
+        binding.questionImage.setBackgroundResource(imageAssets.get(currentQuestion + (10 * (quizID - 1))));
+    }
+
+    public void getImages()
+    {
+        // Maths
+        imageAssets.add(R.drawable.circumference);
+        imageAssets.add(R.drawable.area_of_triangle);
+        imageAssets.add(R.drawable.pythagorus);
+        imageAssets.add(R.drawable.surfacce_of_sphere);
+        imageAssets.add(R.drawable.quadratic);
+        imageAssets.add(R.drawable.volume_of_cone);
+        imageAssets.add(R.drawable.fma);
+        imageAssets.add(R.drawable.surfacce_of_sphere);
+        imageAssets.add(R.drawable.emc2);
+        imageAssets.add(R.drawable.volume_of_cylinder);
+
+        // History
+        imageAssets.add(R.drawable.chernobyl);
+        imageAssets.add(R.drawable.richard_wittington);
+        imageAssets.add(R.drawable.john_adams);
+        imageAssets.add(R.drawable.jane_seymour);
+        imageAssets.add(R.drawable.howard_carter);
+        imageAssets.add(R.drawable.robert_f_scott);
+        imageAssets.add(R.drawable.europe);
+        imageAssets.add(R.drawable.william_wallace);
+        imageAssets.add(R.drawable.south_africa);
+        imageAssets.add(R.drawable.ww2);
+
+        // Geography
+        imageAssets.add(R.drawable.world_map);
+        imageAssets.add(R.drawable.malta);
+        imageAssets.add(R.drawable.world_map);
+        imageAssets.add(R.drawable.uk);
+        imageAssets.add(R.drawable.uk);
+        imageAssets.add(R.drawable.world_map);
+        imageAssets.add(R.drawable.france);
+        imageAssets.add(R.drawable.world_map);
+        imageAssets.add(R.drawable.usa);
+        imageAssets.add(R.drawable.uk);
     }
 
     @Override
