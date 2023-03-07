@@ -72,7 +72,7 @@ public class QuizAdapter extends RecyclerView.Adapter<com.example.mobileappas1.u
     @Override
     public void onBindViewHolder(@NonNull com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder holder, int position) {
         // TypeCast Object to int type
-        holder.text.setText((String) noteList.get(position));
+        //holder.text.setText("HELLO");
     }
 
     @Override
