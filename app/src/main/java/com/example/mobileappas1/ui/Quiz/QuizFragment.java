@@ -33,6 +33,9 @@ public class QuizFragment extends Fragment {
         binding = FragmentQuizBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        // show all of the scores on the high score list
+
+
         binding.mathToggle.setOnClickListener(view -> {
             disableAll();
             binding.mathToggle.setChecked(true);

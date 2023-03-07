@@ -23,10 +23,22 @@ import android.view.ViewGroup;
 import com.example.mobileappas1.R;
 import com.example.mobileappas1.databinding.FragmentQuizQuestionBinding;
 import com.example.mobileappas1.databinding.FragmentQuizResultsBinding;
+import com.example.mobileappas1.ui.Notes.Note;
+import com.example.mobileappas1.ui.Notes.NotesData;
+import com.example.mobileappas1.ui.Notes.User;
+import com.example.mobileappas1.ui.Notes.Users;
 import com.google.gson.Gson;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuizResultsFragment extends Fragment {
 
@@ -64,35 +76,103 @@ public class QuizResultsFragment extends Fragment {
         return root;
     }
 
+    QuizResults quizResults = new QuizResults();
+
     public void saveScore() {
-        // create a file with the user name and the date and then save the score to it
-        QuizResults scoreToSave = new QuizResults();
-        scoreToSave.setScore(correctAnswers);
+
+        // need to load the saved file
+
+        if (!isFilePresent(getContext(), "savedQuizResults.txt")) {
+            Log.i("DEBUG", "NO FILE");
+            createFile();
+        }
+        readFile();
 
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         int playerID = sharedPref.getInt("playerID", 0);
         String name = getResources().getStringArray(R.array.usernames)[playerID];
-        scoreToSave.setName(name);
 
+        List<Integer> scores = quizResults.getScore();
+        List<String> names = quizResults.getName();
+        List<String> dates = quizResults.getDate();
+        for (int i = 0; i < scores.size(); i++) {
+            // if the score is less than the current score or equal to it then add the current score there
+            if (correctAnswers >= scores.get(i)) {
+                scores.add(i, correctAnswers);
+                names.add(i, name);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    dates.add(i, LocalDateTime.now().format(ISO_DATE));
+                else
+                    dates.add(i, "N/A");
+                break;
+            }
+        }
+        quizResults.setScore(scores);
+        quizResults.setName(names);
+        quizResults.setDate(dates);
+        writeFile();
+
+        Navigation.findNavController(getView()).navigate(R.id.navigation_quiz);
+    }
+
+
+    public boolean isFilePresent(Context context, String fileName) {
+        String path = context.getFilesDir().getAbsolutePath() + "/" + fileName;
+        File file = new File(path);
+        return file.exists();
+    }
+
+    public void writeFile()
+    {
         // create the Json file from the data
         Gson gson = new Gson();
-        String json = gson.toJson(scoreToSave);
+        String json = gson.toJson(quizResults);
 
         // write the file
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                outputStream = getContext().openFileOutput("QuizResults_" + name + "_" + LocalDateTime.now(),
-                        getContext().MODE_PRIVATE);
-            }
-            else
-                outputStream = getContext().openFileOutput("QuizResults_" + name, getContext().MODE_PRIVATE);
+            outputStream = getContext().openFileOutput("savedQuizResults.txt", getContext().MODE_PRIVATE);
             outputStream.write(json.getBytes());
             outputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
-        Navigation.findNavController(getView()).navigate(R.id.navigation_quiz);
+    public void readFile()
+    {
+        // read the file
+        FileInputStream fis = null;
+        try {
+            fis = getContext().openFileInput("savedQuizResults.txt");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        InputStreamReader isr = new InputStreamReader(fis);
+        BufferedReader bufferedReader = new BufferedReader(isr);
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while (true) {
+            try {
+                if (!((line = bufferedReader.readLine()) != null)) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            sb.append(line);
+        }
+
+        String json2 = sb.toString();
+
+        Gson gson2 = new Gson();
+        QuizResults data = gson2.fromJson(json2, QuizResults.class);
+        // data is the data that has been read
+        quizResults = data;
+    }
+
+    public void createFile()
+    {
+        // Set all of the default values (there are none for a empty high score)
+        quizResults = new QuizResults();
+        writeFile();
     }
 
     @Override

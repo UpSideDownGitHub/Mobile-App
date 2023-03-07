@@ -34,6 +34,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quiztitle_text" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/quiz_recyclerview"
+        android:layout_width="344dp"
+        android:layout_height="300dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startquiz_button"
+        app:layout_constraintVertical_bias="0.145" />
+
     <ToggleButton
         android:id="@+id/math_toggle"
         android:layout_width="wrap_content"
@@ -48,6 +60,8 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 
     <ToggleButton
         android:id="@+id/history_toggle"
