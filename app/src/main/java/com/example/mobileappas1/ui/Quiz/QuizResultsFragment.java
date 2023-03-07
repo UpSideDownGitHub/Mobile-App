@@ -92,12 +92,12 @@ public class QuizResultsFragment extends Fragment {
         int playerID = sharedPref.getInt("playerID", 0);
         String name = getResources().getStringArray(R.array.usernames)[playerID];
 
-        List<Integer> scores = quizResults.getScore();
-        List<String> names = quizResults.getName();
-        List<String> dates = quizResults.getDate();
+        ArrayList<Integer> scores = quizResults.getScore();
+        ArrayList names = quizResults.getName();
+        ArrayList dates = quizResults.getDate();
         for (int i = 0; i < scores.size(); i++) {
             // if the score is less than the current score or equal to it then add the current score there
-            if (correctAnswers >= scores.get(i)) {
+            if ((int)correctAnswers >= (int)scores.get(i)) {
                 scores.add(i, correctAnswers);
                 names.add(i, name);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
@@ -107,10 +107,22 @@ public class QuizResultsFragment extends Fragment {
                 break;
             }
         }
+        if (scores.size() == 0)
+        {
+            scores.add(0, correctAnswers);
+            names.add(0, name);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                dates.add(0, LocalDateTime.now().format(ISO_DATE));
+            else
+                dates.add(0, "N/A");
+        }
+
         quizResults.setScore(scores);
         quizResults.setName(names);
         quizResults.setDate(dates);
         writeFile();
+
+        Log.i("DEBUG", quizResults.getName().get(0).toString());
 
         Navigation.findNavController(getView()).navigate(R.id.navigation_quiz);
     }

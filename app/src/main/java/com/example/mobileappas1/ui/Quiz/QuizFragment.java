@@ -13,15 +13,33 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobileappas1.R;
 import com.example.mobileappas1.databinding.FragmentQuizBinding;
+import com.example.mobileappas1.ui.Notes.NotesData;
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 //import com.example.mobileappas1.databinding.frag;
 
 public class QuizFragment extends Fragment {
 
     private FragmentQuizBinding binding;
+    QuizAdapter adapter;
+    QuizResults quizResults = new QuizResults();
+
+    FileOutputStream outputStream;
 
     private boolean maths, history, geography;
 
@@ -34,7 +52,67 @@ public class QuizFragment extends Fragment {
         View root = binding.getRoot();
 
         // show all of the scores on the high score list
+        adapter = new QuizAdapter(getActivity(), getContext(), new ArrayList<>());
+        RecyclerView recyclerView = (RecyclerView) binding.quizRecyclerview;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
 
+        String path = getContext().getFilesDir().getAbsolutePath() + "/" + "savedQuizResults.txt";
+        File file = new File(path);
+        if (!file.exists())
+        {
+            Log.i("DEBUG", "Does not exist");
+            // create the Json file from the data
+            Gson gson = new Gson();
+            String json = gson.toJson(quizResults);
+
+            // write the file
+            try {
+                outputStream = getContext().openFileOutput("savedQuizResults.txt", getContext().MODE_PRIVATE);
+                outputStream.write(json.getBytes());
+                outputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        // read the file
+        FileInputStream fis = null;
+        try {
+            fis = getContext().openFileInput("savedQuizResults.txt");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        InputStreamReader isr = new InputStreamReader(fis);
+        BufferedReader bufferedReader = new BufferedReader(isr);
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while (true) {
+            try {
+                if (!((line = bufferedReader.readLine()) != null)) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            sb.append(line);
+        }
+        String json2 = sb.toString();
+        Gson gson2 = new Gson();
+        QuizResults data = gson2.fromJson(json2, QuizResults.class);
+        // data is the data that has been read
+        quizResults = data;
+
+        // UPDATE THE LIST OF ITEMS BEING SHOWN
+
+        // load all the new data into the adapters
+        adapter.clearList();
+        // take the data and read the file
+        List<String> names = quizResults.getName();
+        for (int i = 0; i < names.size(); i++) {
+            adapter.addValue(names.get(i));
+            Log.i("PLEASE ALLOW IT TO WORK", names.get(i));
+        }
+        adapter.update();
 
         binding.mathToggle.setOnClickListener(view -> {
             disableAll();

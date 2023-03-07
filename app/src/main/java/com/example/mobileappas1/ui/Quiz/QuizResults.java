@@ -5,16 +5,16 @@ import java.util.List;
 
 public class QuizResults
 {
-    private List<String> name = new ArrayList<>();
-    private List<String> date = new ArrayList<>();;
-    private List<Integer> score = new ArrayList<>();;
+    private ArrayList name = new ArrayList<>();
+    private ArrayList date = new ArrayList<>();;
+    private ArrayList<Integer> score = new ArrayList<>();;
 
-    public List<String> getName(){return name;}
-    public void setName(List<String> value){this.name = value;}
+    public ArrayList getName(){return name;}
+    public void setName(ArrayList value){this.name = value;}
 
-    public List<String> getDate(){return date;}
-    public void setDate(List<String> value){this.date = value;}
+    public ArrayList getDate(){return date;}
+    public void setDate(ArrayList value){this.date = value;}
 
-    public List<Integer> getScore(){return score;}
-    public void setScore(List<Integer> value){this.score = value;}
+    public ArrayList getScore(){return score;}
+    public void setScore(ArrayList<Integer> value){this.score = value;}
 }
