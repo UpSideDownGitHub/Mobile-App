@@ -106,6 +106,16 @@ public class QuizResultsFragment extends Fragment {
                     dates.add(i, "N/A");
                 break;
             }
+            if (i == scores.size() - 1)
+            {
+                scores.add(i, correctAnswers);
+                names.add(i, name);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    dates.add(i, LocalDateTime.now().format(ISO_DATE));
+                else
+                    dates.add(i, "N/A");
+                break;
+            }
         }
         if (scores.size() == 0)
         {

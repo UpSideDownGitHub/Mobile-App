@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 // Extends the Adapter class to RecyclerView.Adapter
 // and implement the unimplemented methods
-public class QuizAdapter extends RecyclerView.Adapter<com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder> {
+public class QuizAdapter extends RecyclerView.Adapter<com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder2> {
     ArrayList  noteList;
     Context context;
     FragmentActivity activity;
@@ -41,13 +41,13 @@ public class QuizAdapter extends RecyclerView.Adapter<com.example.mobileappas1.u
 
     @NonNull
     @Override
-    public com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflating the Layout(Instantiates list_item.xml
         // layout file into View object)
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notes_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.quiz_list_item, parent, false);
 
         // Passing view to ViewHolder
-        com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder viewHolder = new com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder(view);
+        com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder2 viewHolder = new com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder2(view);
 
         view.setOnClickListener(v -> {
             globalPosition = viewHolder.getAbsoluteAdapterPosition();
@@ -61,6 +61,8 @@ public class QuizAdapter extends RecyclerView.Adapter<com.example.mobileappas1.u
             editor.putInt("currentNoteID", index);
             editor.apply();
 
+            //TextView textview = view.findViewById(R.id.quizresult_score);
+
             //Navigation.findNavController(view).navigate(R.id.navigation_edit_notes);
             update();
         });
@@ -70,9 +72,10 @@ public class QuizAdapter extends RecyclerView.Adapter<com.example.mobileappas1.u
 
     // Binding data to the into specified position
     @Override
-    public void onBindViewHolder(@NonNull com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder2 holder, int position) {
         // TypeCast Object to int type
         //holder.text.setText("HELLO");
+        holder.text.setText((String) noteList.get(position));
     }
 
     @Override
@@ -83,12 +86,12 @@ public class QuizAdapter extends RecyclerView.Adapter<com.example.mobileappas1.u
     }
 
     // Initializing the Views
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder2 extends RecyclerView.ViewHolder {
         TextView text;
 
-        public ViewHolder(View view) {
+        public ViewHolder2(View view) {
             super(view);
-            text = (TextView) view.findViewById(R.id.quizresult_name);
+            text = (TextView) view.findViewById(R.id.quizresult_score);
         }
     }
 
