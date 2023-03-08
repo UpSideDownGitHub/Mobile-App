@@ -42,6 +42,7 @@ public class QuizFragment extends Fragment {
     FileOutputStream outputStream;
 
     private boolean maths, history, geography;
+    private int quizID;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -102,32 +103,26 @@ public class QuizFragment extends Fragment {
         // data is the data that has been read
         quizResults = data;
 
-        // UPDATE THE LIST OF ITEMS BEING SHOWN
-
-        // load all the new data into the adapters
-        adapter.clearList();
-        // take the data and read the file
-        List<String> names = quizResults.getName();
-        for (int i = 0; i < names.size(); i++) {
-            adapter.addValue(names.get(i));
-            Log.i("PLEASE ALLOW IT TO WORK", names.get(i));
-        }
-        adapter.update();
-
         binding.mathToggle.setOnClickListener(view -> {
             disableAll();
+            quizID = 1;
             binding.mathToggle.setChecked(true);
             maths = true;
+            updateAdapterView();
         });
         binding.historyToggle.setOnClickListener(view -> {
             disableAll();
+            quizID = 2;
             binding.historyToggle.setChecked(true);
             history = true;
+            updateAdapterView();
         });
         binding.geographyToggle.setOnClickListener(view -> {
             disableAll();
+            quizID = 3;
             binding.geographyToggle.setChecked(true);
             geography = true;
+            updateAdapterView();
         });
 
         binding.startquizButton.setOnClickListener(view -> {
@@ -157,6 +152,23 @@ public class QuizFragment extends Fragment {
         maths = false;
         history = false;
         geography = false;
+        quizID = 0;
+    }
+
+    public void updateAdapterView()
+    {
+        // load all the new data into the adapters
+        adapter.clearList();
+        // take the data and read the file
+        List<String> names = quizResults.getName();
+        List<String> dates = quizResults.getDate();
+        List<Integer> scores = quizResults.getScore();
+        List<Integer> types = quizResults.getType();
+        for (int i = 0; i < types.size(); i++) {
+            if (types.get(i) == quizID)
+                adapter.addValue(names.get(i), scores.get(i).toString(), dates.get(i));
+        }
+        adapter.update();
     }
 
     @Override

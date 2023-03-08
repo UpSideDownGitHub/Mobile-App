@@ -18,12 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobileappas1.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 // Extends the Adapter class to RecyclerView.Adapter
 // and implement the unimplemented methods
 public class QuizAdapter extends RecyclerView.Adapter<com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder2> {
-    ArrayList  noteList;
+    ArrayList<QuizDataHolder> quizDataHolder;
     Context context;
     FragmentActivity activity;
 
@@ -34,39 +36,15 @@ public class QuizAdapter extends RecyclerView.Adapter<com.example.mobileappas1.u
     // Constructor for initialization
     public QuizAdapter(FragmentActivity givenActivity, Context context, ArrayList givenNotes) {
         this.context = context;
-        this.noteList = givenNotes;
+        this.quizDataHolder = givenNotes;
         this.activity = givenActivity;
-
     }
 
     @NonNull
     @Override
     public com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflating the Layout(Instantiates list_item.xml
-        // layout file into View object)
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.quiz_list_item, parent, false);
-
-        // Passing view to ViewHolder
         com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder2 viewHolder = new com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder2(view);
-
-        view.setOnClickListener(v -> {
-            globalPosition = viewHolder.getAbsoluteAdapterPosition();
-            int pos = globalPosition;
-            int index = noteList.indexOf(noteList.get(pos));
-            Log.i("DEBUG", "You Pressed: " + index);
-
-
-            SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt("currentNoteID", index);
-            editor.apply();
-
-            //TextView textview = view.findViewById(R.id.quizresult_score);
-
-            //Navigation.findNavController(view).navigate(R.id.navigation_edit_notes);
-            update();
-        });
-
         return viewHolder;
     }
 
@@ -74,35 +52,42 @@ public class QuizAdapter extends RecyclerView.Adapter<com.example.mobileappas1.u
     @Override
     public void onBindViewHolder(@NonNull com.example.mobileappas1.ui.Quiz.QuizAdapter.ViewHolder2 holder, int position) {
         // TypeCast Object to int type
+        final QuizDataHolder quizDataHolder1 = quizDataHolder.get(position);
         //holder.text.setText("HELLO");
-        holder.text.setText((String) noteList.get(position));
+        holder.text.setText(quizDataHolder1.getName());
+        holder.scoreText.setText(quizDataHolder1.getScore());
+        holder.dateText.setText(quizDataHolder1.getDate());
+        Log.i("DEBUG", quizDataHolder1.getName());
+        Log.i("DEBUG", quizDataHolder1.getScore());
+        Log.i("DEBUG", quizDataHolder1.getDate());
+
     }
 
     @Override
     public int getItemCount() {
         // Returns number of items
         // currently available in Adapter
-        return noteList.size();
+        return quizDataHolder.size();
     }
 
     // Initializing the Views
     public class ViewHolder2 extends RecyclerView.ViewHolder {
         TextView text;
+        TextView dateText;
+        TextView scoreText;
 
         public ViewHolder2(View view) {
             super(view);
-            text = (TextView) view.findViewById(R.id.quizresult_score);
+            text = (TextView) view.findViewById(R.id.quizresult_name);
+            dateText = (TextView) view.findViewById(R.id.quizresult_date);
+            scoreText = (TextView) view.findViewById(R.id.quizresult_score);
         }
     }
 
-    public void clearList()
-    {
-        noteList.clear();
-    }
+    public void clearList() {quizDataHolder.clear();}
 
-    public void addValue(String value)
-    {
-        noteList.add(value);
+    public void addValue(String value1, String value2, String value3) {
+        quizDataHolder.add(new QuizDataHolder(value1, value2, value3));
     }
 
     public void update()

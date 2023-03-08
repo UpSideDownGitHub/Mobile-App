@@ -45,7 +45,7 @@ public class QuizResultsFragment extends Fragment {
     private FragmentQuizResultsBinding binding;
     FileOutputStream outputStream;
 
-    private int maxQustions = 10, correctAnswers;
+    private int maxQustions = 10, correctAnswers, quizID;
 
     @SuppressLint("SetTextI18n")
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -57,6 +57,9 @@ public class QuizResultsFragment extends Fragment {
         View root = binding.getRoot();
 
         correctAnswers = getArguments().getInt("correct");
+
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        quizID = sharedPref.getInt("quizID", 0);
 
         // set the amount of question correct text
         String temp = correctAnswers + " of " + maxQustions;
@@ -81,7 +84,6 @@ public class QuizResultsFragment extends Fragment {
     public void saveScore() {
 
         // need to load the saved file
-
         if (!isFilePresent(getContext(), "savedQuizResults.txt")) {
             Log.i("DEBUG", "NO FILE");
             createFile();
@@ -93,6 +95,7 @@ public class QuizResultsFragment extends Fragment {
         String name = getResources().getStringArray(R.array.usernames)[playerID];
 
         ArrayList<Integer> scores = quizResults.getScore();
+        ArrayList<Integer> types = quizResults.getType();
         ArrayList names = quizResults.getName();
         ArrayList dates = quizResults.getDate();
         for (int i = 0; i < scores.size(); i++) {
@@ -104,6 +107,7 @@ public class QuizResultsFragment extends Fragment {
                     dates.add(i, LocalDateTime.now().format(ISO_DATE));
                 else
                     dates.add(i, "N/A");
+                types.add(i, quizID);
                 break;
             }
             if (i == scores.size() - 1)
@@ -114,6 +118,7 @@ public class QuizResultsFragment extends Fragment {
                     dates.add(i, LocalDateTime.now().format(ISO_DATE));
                 else
                     dates.add(i, "N/A");
+                types.add(i, quizID);
                 break;
             }
         }
@@ -125,14 +130,14 @@ public class QuizResultsFragment extends Fragment {
                 dates.add(0, LocalDateTime.now().format(ISO_DATE));
             else
                 dates.add(0, "N/A");
+            types.add(0, quizID);
         }
 
         quizResults.setScore(scores);
         quizResults.setName(names);
         quizResults.setDate(dates);
+        quizResults.setType(types);
         writeFile();
-
-        Log.i("DEBUG", quizResults.getName().get(0).toString());
 
         Navigation.findNavController(getView()).navigate(R.id.navigation_quiz);
     }
