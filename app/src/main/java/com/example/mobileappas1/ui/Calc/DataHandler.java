@@ -163,28 +163,24 @@ public class DataHandler
                 value = Double.parseDouble(finalCalculation.get(i));
                 continue;
             }
-
-            // if there are more values
-            if (i + 1 < finalCalculation.size())
+            try {
+                // if there are more values
+                if (i + 1 < finalCalculation.size()) {
+                    // find the operator to be used
+                    if (finalCalculation.get(i).compareTo("+") == 0) {
+                        value = value + Double.parseDouble(finalCalculation.get(i + 1));
+                    } else if (finalCalculation.get(i).compareTo("-") == 0) {
+                        value = value - Double.parseDouble(finalCalculation.get(i + 1));
+                    } else if (finalCalculation.get(i).compareTo("x") == 0) {
+                        value = value * Double.parseDouble(finalCalculation.get(i + 1));
+                    } else if (finalCalculation.get(i).compareTo("÷") == 0) {
+                        value = value / Double.parseDouble(finalCalculation.get(i + 1));
+                    }
+                    i++;
+                }
+            }catch (Exception e)
             {
-                // find the operator to be used
-                if (finalCalculation.get(i).compareTo("+") == 0)
-                {
-                    value = value + Double.parseDouble(finalCalculation.get(i + 1));
-                }
-                else if (finalCalculation.get(i).compareTo("-") == 0)
-                {
-                    value = value - Double.parseDouble(finalCalculation.get(i + 1));
-                }
-                else if (finalCalculation.get(i).compareTo("x") == 0)
-                {
-                    value = value * Double.parseDouble(finalCalculation.get(i + 1));
-                }
-                else if (finalCalculation.get(i).compareTo("÷") == 0)
-                {
-                    value = value / Double.parseDouble(finalCalculation.get(i + 1));
-                }
-                i++;
+                return false;
             }
         }
 
