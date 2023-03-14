@@ -31,19 +31,23 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-//import com.example.mobileappas1.databinding.frag;
-
+/*
+ * this class is the main class for thr quiz and will handle the main screen
+ * of the quiz activity
+ */
 public class QuizFragment extends Fragment {
 
+    // Private Variables
     private FragmentQuizBinding binding;
     QuizAdapter adapter;
     QuizResults quizResults = new QuizResults();
-
     FileOutputStream outputStream;
-
     private boolean maths, history, geography;
     private int quizID;
 
+    /*
+     * this will handle initializing the view and then load all of the data from the file
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         QuizViewModel quizViewModel =
