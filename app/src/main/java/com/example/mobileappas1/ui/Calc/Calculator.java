@@ -13,20 +13,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/*
+ * this calss will handle managing all the aspects of the calculator and showing the answers
+ */
 public class Calculator
 {
-    // PUBLIC
-
-    // PRIVATE
+    // Private varaibles
     private FragmentCalculatorBinding binding;
     private CalcAdapter recylerAdapter;
     private String currentText;
-
     private DataHandler dataHandler;
-
-    // instruction list
     private List<InputTypes> instructions = new ArrayList<InputTypes>();
 
+    /*
+     * Constructor for insitilisation
+     */
     public Calculator(FragmentCalculatorBinding view, CalcAdapter calcAdapter)
     {
         recylerAdapter = calcAdapter;
@@ -34,19 +35,23 @@ public class Calculator
         dataHandler = new DataHandler();
     }
 
+    /*
+     * used to add instruction to the current list of instructions
+     */
     public void addInstruction(InputTypes type) {
-        // some instructions should not be added
-
+        // if equals then calculate the answer of the given isntruction
         if (type == InputTypes.EQUALS)
         {
             // work out the given sum
             boolean done = dataHandler.calculateInstructions(instructions);
+            // if worked then show the answer otherwise show error
             if (done)
                 showAnswer(dataHandler.currentAnswer);
             else
                 showError("Syntax Error");
             return;
         }
+        // if del then remove the last instruction
         else if (type == InputTypes.DEL)
         {
             // remove the last instruction
@@ -54,6 +59,7 @@ public class Calculator
             updateText();
             return;
         }
+        // if Ac then remove all instructions
         else if (type == InputTypes.AC)
         {
             // remove all instructions
@@ -69,28 +75,37 @@ public class Calculator
         updateText();
     }
 
+    /*
+     * Show the given error in the sumtext area
+     */
     public void showError(String error)
     {
+        // Show the given error
         TextView text = binding.sumText;
         text.setText(error);
         dataHandler.removeAll(instructions);
     }
+    /*
+     * show the answer in the sumText area as well as adding it to the recylcer view
+     */
     public void showAnswer(double value)
     {
+        // show the answer
         TextView text = binding.sumText;
-        // CHANGE THIS LINE TO SET IT TO THE DEFAULT VALUE
         text.setText(R.string.calc_default);
         dataHandler.removeAll(instructions);
 
-        // need to add this answer to the list of answers then show the next the default text of the thing
+        // add the answer to the recyler view
         recylerAdapter.addValue("= " + Double.toString(value));
     }
 
+    /*
+     * update the text that is being shown to show new answer to new instruction being added
+     */
     public void updateText()
     {
-        // this function is used to show the text on screen
+        // update text being show to show the most current text
         String converted = dataHandler.convertToString(instructions);
-
         TextView text = binding.sumText;
         text.setText(converted);
     }

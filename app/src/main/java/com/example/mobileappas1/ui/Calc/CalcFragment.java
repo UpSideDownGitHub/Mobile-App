@@ -17,27 +17,34 @@ import com.example.mobileappas1.databinding.FragmentCalculatorBinding;
 
 import java.util.ArrayList;
 
-
+/*
+ * this class will handle the main caluculator screen (the buttons and setting it up)
+ */
 public class CalcFragment extends Fragment {
 
+    // Public variables
     public Calculator calculator;
-    RecyclerView recyclerView;
-    CalcAdapter adapter;
 
-    // Using ArrayList to store images data
-    ArrayList courseName = new ArrayList<>();
-
+    // Private varaibles
+    private RecyclerView recyclerView;
+    private CalcAdapter adapter;
+    private ArrayList courseName = new ArrayList<>();
     private FragmentCalculatorBinding binding;
 
+    /*
+     * this method will run when the view is created and will initilaise all
+     * elemtents as well as setting all of the listeners
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        // Create the view model
         CalcViewModel calcViewModel =
                 new ViewModelProvider(this).get(CalcViewModel.class);
 
+        // Get the binding and the root
         binding = FragmentCalculatorBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // CALCULATOR CODE
         // buttons listeners
         // Line 1
         binding.zeroButton.setOnClickListener( view -> btn_zero(getView()));
@@ -79,17 +86,23 @@ public class CalcFragment extends Fragment {
         // Setting Adapter to RecyclerView
         recyclerView.setAdapter(adapter);
 
+        // create an instance of the calculator 
         calculator = new Calculator(binding, adapter);
 
+        // return root
         return root;
     }
 
+    /*
+     * handles destroying the view correctly
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
 
+    // Button Pressed Method
     // LINE 1
     public void btn_zero(View view) { calculator.addInstruction(InputTypes.ZERO); }
     public void btn_point(View view) { calculator.addInstruction(InputTypes.POINT); }

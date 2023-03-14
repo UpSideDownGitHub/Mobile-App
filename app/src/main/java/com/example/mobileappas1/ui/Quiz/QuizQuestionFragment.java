@@ -28,31 +28,39 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/*
+ * this fragment will handle the questions that will be shown to the user
+ */
 public class QuizQuestionFragment extends Fragment {
 
+    // Private variables
     private FragmentQuizQuestionBinding binding;
-
     private int currentQuestion, quizID, correctAnswers, answerChosen;
     private String[] questions;
     private String[] answers;
     private String[] currentAnswers;
-
     private List<Integer> imageAssets = new ArrayList<Integer>();
 
-
+    /*
+     * this method will run when the view is created and will initilaise all
+     * elemtents as well as setting all of the listeners
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        // create the view model
         QuizViewModel quizViewModel =
                 new ViewModelProvider(this).get(QuizViewModel.class);
-
+        // get the binding and then get the root 
         binding = FragmentQuizQuestionBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        // set the current question to 0
         currentQuestion = 0;
 
-
+        // load the shared preferences to get the current quizID
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         quizID = sharedPref.getInt("quizID", 0);
+        // set the question based on the quiz id
         if (quizID == 1) {
             questions = getResources().getStringArray(R.array.q1_questions);
             answers = getResources().getStringArray(R.array.q1_answers);
@@ -65,10 +73,11 @@ public class QuizQuestionFragment extends Fragment {
             questions = getResources().getStringArray(R.array.q3_questions);
             answers = getResources().getStringArray(R.array.q3_answers);
         }
+        // load all the images needed for the current quiz
         getImages();
         updateAll();
 
-
+        // add listeners to all of the possible answers
         binding.answerA.setOnClickListener(view -> {
             answerChosen = 1;
             currentQuestion++;
@@ -94,27 +103,39 @@ public class QuizQuestionFragment extends Fragment {
             updateAll();
         });
 
+        // return the root
         return root;
     }
 
+    /*
+     * checks if the entered answer is correct and if it is will set as correct
+     */
     public void checkForCorrect()
     {
+        // if is the last question
         if (currentQuestion == 10)
         {
+            // go to the results screen
             Bundle bundle = new Bundle();
             bundle.putInt("correct", correctAnswers);
             Navigation.findNavController(getView()).navigate(R.id.navigation_quiz_results, bundle);
             return;
         }
 
+        // if the answer is correct then add one to correct answers
         if(currentAnswers[answerChosen - 1] == answers[(currentQuestion-1) * 4])
             correctAnswers++;
     }
 
+    /*
+     * updates all of the UI elemements to show the next question
+     */
     public void updateAll()
     {
+        // if on the last question then do nothing
         if (currentQuestion == 10)
             return;
+
         // update possible answers
         currentAnswers = new String[]{answers[currentQuestion * 4], answers[currentQuestion * 4 + 1] ,
                 answers[currentQuestion * 4 + 2] , answers[currentQuestion * 4 + 3] };
@@ -122,13 +143,13 @@ public class QuizQuestionFragment extends Fragment {
         Collections.shuffle(stringList);
         currentAnswers = stringList.toArray(currentAnswers);
 
-        // completion bar
+        // update completion bar
         binding.quizProgress.setProgress(currentQuestion, true);
 
-        // question text
+        // update question text
         binding.questionText.setText(questions[currentQuestion]);
 
-        // answers text
+        // update answers text
         binding.answerA.setText(currentAnswers[0]);
         binding.answerB.setText(currentAnswers[1]);
         binding.answerC.setText(currentAnswers[2]);
@@ -138,6 +159,10 @@ public class QuizQuestionFragment extends Fragment {
         binding.questionImage.setBackgroundResource(imageAssets.get(currentQuestion + (10 * (quizID - 1))));
     }
 
+    /*
+     * load all of the possible images from there file but to save space only load there
+     * ID so i can load them by there ID
+     */
     public void getImages()
     {
         // Maths
@@ -177,6 +202,9 @@ public class QuizQuestionFragment extends Fragment {
         imageAssets.add(R.drawable.uk);
     }
 
+    /*
+     * handles destroying the view properly as to not cause any issues
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

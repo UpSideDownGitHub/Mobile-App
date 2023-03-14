@@ -33,119 +33,97 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/*
+ * Fragment for the edit note screen
+ */
 public class EditNoteFragment extends Fragment {
 
+    // Private varaibles
     private FragmentEditNoteBinding binding;
-
     private int playerID, noteID;
-    NotesData notesData = new NotesData();
-    FileOutputStream outputStream;
+    private NotesData notesData = new NotesData();
+    private FileOutputStream outputStream;
 
+    /*
+     * this method will run when the view is created and will initilaise all
+     * elemtents as well as setting all of the listeners
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        // Create the view model    
         EditNoteViewModel editNoteViewModel =
                 new ViewModelProvider(this).get(EditNoteViewModel.class);
 
+        // Get the binding and the root
         binding = FragmentEditNoteBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        
+        // load the current note and the player ID from shared preferences
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         noteID = sharedPref.getInt("currentNoteID", 0);
         playerID = sharedPref.getInt("playerID", 0);
-        //Log.i("DEBUG", "ID: " + ID);
 
+        // read the file to load all of the date from it
         readFile();
 
+        // get the title and contents from the read title
         String title = notesData.getUsers().getUser().get(playerID).getNotes().get(noteID).getTitle();
         String contents = notesData.getUsers().getUser().get(playerID).getNotes().get(noteID).getContents();
         binding.edittitleEdittext.setText(title);
         binding.editcontentsEdittext.setText(contents);
 
-        // save note
+        // save note button listener
         binding.editnoteButton.setOnClickListener( view -> saveEditedNote(view));
-        // delte note
+        // delte note button listener
         binding.deletenoteButton.setOnClickListener(view -> deleteNote(view));
 
+        // retunr root
         return root;
     }
+
+    /*
+     * deletes the current note
+     */
     public  void deleteNote(View view)
     {
         // read the file
-        FileInputStream fis = null;
-        try {
-            fis = getContext().openFileInput("savedNotes.txt");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        InputStreamReader isr = new InputStreamReader(fis);
-        BufferedReader bufferedReader = new BufferedReader(isr);
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while (true) {
-            try {
-                if (!((line = bufferedReader.readLine()) != null)) break;
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            sb.append(line);
-        }
-        String json2 = sb.toString();
-        Gson gson2 = new Gson();
-        NotesData data = gson2.fromJson(json2, NotesData.class);
-
-        // data is the data that has been read
-        notesData = data;
+        readFile();
 
         // remove the selected note
-        // Update Title
         ArrayList notes = notesData.getUsers().getUser().get(playerID).getNotes();
         notes.remove(noteID);
         notesData.getUsers().getUser().get(playerID).setNotes(notes);
 
+        // write the new data to the file
         writeFile();
 
+        // go to the main notes screen
         Navigation.findNavController(view).navigate(R.id.navigation_notes);
     }
 
+    /*
+     * updates the editied note to show the new data
+     */
     public void saveEditedNote(View view)
     {
+        // get the title and contents of the new note
         String title = binding.edittitleEdittext.getText().toString();
         String contents = binding.editcontentsEdittext.getText().toString();
 
         // read the file
-        FileInputStream fis = null;
-        try {
-            fis = getContext().openFileInput("savedNotes.txt");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        InputStreamReader isr = new InputStreamReader(fis);
-        BufferedReader bufferedReader = new BufferedReader(isr);
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while (true) {
-            try {
-                if (!((line = bufferedReader.readLine()) != null)) break;
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            sb.append(line);
-        }
-        String json2 = sb.toString();
-        Gson gson2 = new Gson();
-        NotesData data = gson2.fromJson(json2, NotesData.class);
-
-        // data is the data that has been read
-        notesData = data;
+        readFile();
 
         // check if title already exists
         ArrayList<Note> savedData =  notesData.getUsers().getUser().get(playerID).getNotes();
         for (int i = 0; i < savedData.size(); i++)
         {
+            // if the current note is the note being checked then move on
             if (i == noteID)
                 continue;
+            // if the title is the same as another title 
             if (savedData.get(i).getTitle().equals(title))
             {
+                // show error message and stop saving
                 Toast.makeText(
                         getContext(),
                         R.string.same_note_title,
@@ -154,17 +132,21 @@ public class EditNoteFragment extends Fragment {
             }
         }
 
-        // save the new edited note
+        
         // Update Title
         notesData.getUsers().getUser().get(playerID).getNotes().get(noteID).setTitle(title);
         // Update Contents
         notesData.getUsers().getUser().get(playerID).getNotes().get(noteID).setContents(contents);
-
+        // save the new edited note to file
         writeFile();
 
+        // navigate to the main notes screen 
         Navigation.findNavController(view).navigate(R.id.navigation_notes);
     }
 
+    /*
+     * will handle writing the file to the correct place
+     */
     public void writeFile()
     {
         // create the Json file from the data
@@ -180,6 +162,10 @@ public class EditNoteFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
+    /*
+     * reads the file and converts it to a class of data
+     */
     public void readFile()
     {
         // read the file
@@ -193,6 +179,7 @@ public class EditNoteFragment extends Fragment {
         BufferedReader bufferedReader = new BufferedReader(isr);
         StringBuilder sb = new StringBuilder();
         String line;
+        // get all the data in the file
         while (true) {
             try {
                 if (!((line = bufferedReader.readLine()) != null)) break;
@@ -201,15 +188,17 @@ public class EditNoteFragment extends Fragment {
             }
             sb.append(line);
         }
-
+        // convert the read data to its class format
         String json2 = sb.toString();
-
         Gson gson2 = new Gson();
         NotesData data = gson2.fromJson(json2, NotesData.class);
         // data is the data that has been read
         notesData = data;
     }
 
+    /*
+     * handles destroying the view correctly
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

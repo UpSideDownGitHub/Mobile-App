@@ -1,5 +1,8 @@
 package com.example.mobileappas1.ui.Calc;
 
+/*
+ * types for the calucaltro so i can easily tell what data has been entered
+ */
 public enum InputTypes {
     // LINE 1
     ZERO,

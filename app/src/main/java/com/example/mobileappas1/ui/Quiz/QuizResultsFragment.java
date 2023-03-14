@@ -40,24 +40,35 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * this class is the results fragment and will handle the results screen
+ */
 public class QuizResultsFragment extends Fragment {
 
+    // Private variables
     private FragmentQuizResultsBinding binding;
-    FileOutputStream outputStream;
-
+    private FileOutputStream outputStream;
     private int maxQustions = 10, correctAnswers, quizID;
-
+    private QuizResults quizResults = new QuizResults();
+    /*
+     * is called when the view is created and will inistilse all the elemtents of the 
+     * results screen
+     */
     @SuppressLint("SetTextI18n")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        // Create the view model
         QuizViewModel quizViewModel =
                 new ViewModelProvider(this).get(QuizViewModel.class);
-
+        
+        // Get the binding and the root
         binding = FragmentQuizResultsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+            
+        // get the ammount of correct answers from the arguments sent
         correctAnswers = getArguments().getInt("correct");
-
+        
+        // get the quiz ID from shared preferneces 
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         quizID = sharedPref.getInt("quizID", 0);
 
@@ -71,7 +82,6 @@ public class QuizResultsFragment extends Fragment {
 
         // add click listeners to the two buttons
         binding.saveresultButton.setOnClickListener(view -> saveScore());
-
         binding.quizcontinueButton.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.navigation_quiz);
         });
@@ -79,28 +89,34 @@ public class QuizResultsFragment extends Fragment {
         return root;
     }
 
-    QuizResults quizResults = new QuizResults();
-
+    /*
+     * Save the score that has been achived to the file with the correct quiz
+     * so it can be shown in the correct leaderboard
+     */
     public void saveScore() {
 
-        // need to load the saved file
+        // if there is not file then create one
         if (!isFilePresent(getContext(), "savedQuizResults.txt")) {
-            Log.i("DEBUG", "NO FILE");
             createFile();
         }
+        // read the file
         readFile();
 
+        // get the player ID and the name of the player from the shared preferences
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         int playerID = sharedPref.getInt("playerID", 0);
         String name = getResources().getStringArray(R.array.usernames)[playerID];
 
+        // get all the data from the savedQuizResults
         ArrayList<Integer> scores = quizResults.getScore();
         ArrayList<Integer> types = quizResults.getType();
         ArrayList names = quizResults.getName();
         ArrayList dates = quizResults.getDate();
+        // for all of the items in the data
         for (int i = 0; i < scores.size(); i++) {
             // if the score is less than the current score or equal to it then add the current score there
             if ((int)correctAnswers >= (int)scores.get(i)) {
+                // ad all data to i position in the lists
                 scores.add(i, correctAnswers);
                 names.add(i, name);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
@@ -110,20 +126,27 @@ public class QuizResultsFragment extends Fragment {
                 types.add(i, quizID);
                 break;
             }
+            // if the last item in the list
             if (i == scores.size() - 1)
             {
-                scores.add(i, correctAnswers);
-                names.add(i, name);
+                // TODO: make this so it adds to the end of the list as currently is adding 
+                // one before the end
+                
+                // add elements at the final position
+                scores.add(correctAnswers);
+                names.add(name);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    dates.add(i, LocalDateTime.now().format(ISO_DATE));
+                    dates.add(LocalDateTime.now().format(ISO_DATE));
                 else
-                    dates.add(i, "N/A");
-                types.add(i, quizID);
+                    dates.add("N/A");
+                types.add(quizID);
                 break;
             }
         }
+        // if there are no other elements in the list then just add
         if (scores.size() == 0)
         {
+            // add the current score at the first position in the array
             scores.add(0, correctAnswers);
             names.add(0, name);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
@@ -133,12 +156,15 @@ public class QuizResultsFragment extends Fragment {
             types.add(0, quizID);
         }
 
+        // update the quizresults to have the new values in them
         quizResults.setScore(scores);
         quizResults.setName(names);
         quizResults.setDate(dates);
         quizResults.setType(types);
+        // write the new file to the storage
         writeFile();
 
+        // go to the quiz main screen
         Navigation.findNavController(getView()).navigate(R.id.navigation_quiz);
     }
 

@@ -39,20 +39,22 @@ public class QuizFragment extends Fragment {
 
     // Private Variables
     private FragmentQuizBinding binding;
-    QuizAdapter adapter;
-    QuizResults quizResults = new QuizResults();
-    FileOutputStream outputStream;
+    private QuizAdapter adapter;
+    private QuizResults quizResults = new QuizResults();
+    private FileOutputStream outputStream;
     private boolean maths, history, geography;
     private int quizID;
 
     /*
-     * this will handle initializing the view and then load all of the data from the file
+     * this will handle initializing the view and then load all of the relevant data from the file
      */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        // get the view model for this class
         QuizViewModel quizViewModel =
                 new ViewModelProvider(this).get(QuizViewModel.class);
-
+        
+        // set the binding for the class and get the root 
         binding = FragmentQuizBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -62,17 +64,18 @@ public class QuizFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
-
+        
+        // Load the data from the saved quiz results 
         String path = getContext().getFilesDir().getAbsolutePath() + "/" + "savedQuizResults.txt";
         File file = new File(path);
+        // if there is not a file if the given location
         if (!file.exists())
         {
-            Log.i("DEBUG", "Does not exist");
             // create the Json file from the data
             Gson gson = new Gson();
             String json = gson.toJson(quizResults);
 
-            // write the file
+            // write the file to storage
             try {
                 outputStream = getContext().openFileOutput("savedQuizResults.txt", getContext().MODE_PRIVATE);
                 outputStream.write(json.getBytes());
@@ -93,6 +96,7 @@ public class QuizFragment extends Fragment {
         BufferedReader bufferedReader = new BufferedReader(isr);
         StringBuilder sb = new StringBuilder();
         String line;
+        // read each line of the file and add it to the StringBuilder
         while (true) {
             try {
                 if (!((line = bufferedReader.readLine()) != null)) break;
@@ -101,12 +105,14 @@ public class QuizFragment extends Fragment {
             }
             sb.append(line);
         }
+        // convert read data to the class form
         String json2 = sb.toString();
         Gson gson2 = new Gson();
         QuizResults data = gson2.fromJson(json2, QuizResults.class);
         // data is the data that has been read
         quizResults = data;
 
+        // add listeners to all of toggles to the user can select there quiz type
         binding.mathToggle.setOnClickListener(view -> {
             disableAll();
             quizID = 1;
@@ -128,26 +134,35 @@ public class QuizFragment extends Fragment {
             geography = true;
             updateAdapterView();
         });
-
+        
+        // set bindinig to the start button so when clicked the quiz will start
         binding.startquizButton.setOnClickListener(view -> {
+            // if there is no quiz selected
             if(!maths && !history && !geography)
             {
+                // show error message
                 Toast.makeText(getContext(), R.string.no_quiz_selected, Toast.LENGTH_SHORT).show();
                 return;
             }
             // if maths then set as 1, then if geography set as 2 then finally set to 3 if history
             int quizID = maths ? 1 : history ? 2 : 3;
+            // save the current quiz to shared preferneces so the question fragment can show
+            // the correct questions 
             SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt("quizID", quizID);
             editor.apply();
-
+            
+            // move to the quiz fragment
             Navigation.findNavController(view).navigate(R.id.navigation_quiz_question);
         });
-
+        // return the root
         return root;
     }
 
+    /*
+     * disable all of the toggles and set the selcted to nothing
+     */
     public void disableAll()
     {
         binding.mathToggle.setChecked(false);
@@ -159,22 +174,32 @@ public class QuizFragment extends Fragment {
         quizID = 0;
     }
 
+    /*
+     * update the recycler view to show the new highscore list for the currently
+     * selected quiz
+     */
     public void updateAdapterView()
     {
-        // load all the new data into the adapters
+        // clear the list of items in the current adapter
         adapter.clearList();
-        // take the data and read the file
+        // take the data from the read file
         List<String> names = quizResults.getName();
         List<String> dates = quizResults.getDate();
         List<Integer> scores = quizResults.getScore();
         List<Integer> types = quizResults.getType();
+        // for each peice of data if it was achived with the current
+        // quizID then add it to the current recycler view
         for (int i = 0; i < types.size(); i++) {
             if (types.get(i) == quizID)
                 adapter.addValue(names.get(i), scores.get(i).toString(), dates.get(i));
         }
+        // update the adapter to show all the new data
         adapter.update();
     }
 
+    /*
+     * handle the destroying of the view
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

@@ -25,6 +25,7 @@
     <string name="percentage">Percentage:</string>
 
 
+    <!-- Quiz 1 -->
     <string-array name="q1_questions">
         <item>What is the formula for a circumference of a circle?</item>
         <item>What is the area of a triangle?</item>
@@ -89,6 +90,7 @@
         <item>v = π²rh</item>
     </string-array>
 
+    <!-- Quiz 2 -->
     <string-array name="q2_questions">
         <item>As recently dramatised in a critically acclaimed miniseries, what year did the Chernobyl disaster occur?</item>
         <item>Who was Lord Mayor of London four times between 1397 and 1419, and the inspiration for a classic English folk tale?</item>
@@ -153,6 +155,7 @@
         <item>Israel</item>
     </string-array>
 
+    <!-- Quiz 3 -->
     <string-array name="q3_questions">
         <item>Which country has the longest coastline in the world?</item>
         <item>What is the capital of Malta?</item>

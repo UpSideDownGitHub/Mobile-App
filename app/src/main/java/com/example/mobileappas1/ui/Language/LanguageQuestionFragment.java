@@ -25,36 +25,44 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/*
+ * handles the question screen of the language activity
+ */
 public class LanguageQuestionFragment extends Fragment {
+    // Private varaibles
     private FragmentLanguageQuestionBinding binding;
 
-
+    // Public Varaibles
     public int lang1ChosenOption = 0;
     public int lang2ChosenOption = 0;
-
     public int maxQuestions = 10;
     public int currentQuestion = 0;
     public int correctQuestions = 0;
-
     public String currentQuestions[];
     public String randomisedQuestions[];
 
-
+    /*
+     * this method will run when the view is created and will initilaise all
+     * elemtents as well as setting all of the listeners
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        // Create the view model   
         LanguageQuestionViewModel langViewModel =
                 new ViewModelProvider(this).get(LanguageQuestionViewModel.class);
 
+        // Get the binding and the root
         binding = FragmentLanguageQuestionBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
 
-        // need to set the current question as well as setting the current answers
+        // get the current qustions as well as the randomised ones
         currentQuestions = getResources().getStringArray(R.array.lang_q1);
         randomisedQuestions = getResources().getStringArray(R.array.lang_q1);
+        // update all of the UI elements
         updateAll();
 
-        // Language 1
+        // set the on click listeners for language one toggles
         binding.lang1Option1.setOnClickListener(view -> {
             disableAllLang1();
             binding.lang1Option1.setChecked(true);
@@ -70,7 +78,7 @@ public class LanguageQuestionFragment extends Fragment {
             binding.lang1Option3.setChecked(true);
             lang1ChosenOption = 3;
         });
-        // Language 2
+        // set the on clock listeners for language two toggles
         binding.lang2Option1.setOnClickListener(view -> {
             disableAllLang2();
             binding.lang2Option1.setChecked(true);
@@ -87,42 +95,59 @@ public class LanguageQuestionFragment extends Fragment {
             lang2ChosenOption = 3;
         });
 
+        // add click listener for the continue button
         binding.langContineButton.setOnClickListener(view -> checkForCorrect());
 
-
+        // return root
         return root;
     }
 
+    /*
+     * checks if the correct answer has been entered
+     */
     public void checkForCorrect()
     {
+        // if user has not selected both options error
         if (lang2ChosenOption == 0 || lang1ChosenOption == 0)
         {
+            // error and stop
             Toast.makeText(getContext(), R.string.error_selectitem, Toast.LENGTH_SHORT).show();
             return;
         }
+        // if got question correct increment correctQuestions
         if (currentQuestions[0] == randomisedQuestions[lang1ChosenOption - 1] &&
                 currentQuestions[3] == randomisedQuestions[lang2ChosenOption + 2])
             correctQuestions++;
+        // go to the next question
         currentQuestion++;
 
         // Updated Progress Items
         binding.langProgressbar.setProgress(currentQuestion, true);
         binding.langCurrentquestionText.setText(Integer.toString(currentQuestion) + "/10");
 
+        // if on the last question then load the resutls screen
         if (currentQuestion == 10)
         {
+            // pass the ammount of correct questions
             Bundle bundle = new Bundle();
             bundle.putInt("correct", correctQuestions);
             Navigation.findNavController(getView()).navigate(R.id.navigation_lang_result, bundle);
             return;
         }
+        // update the UI
         updateAll();
     }
 
+    /*
+     * updates all of the UI elementsto show the current question
+     */
     public void updateAll()
     {
+        // load the questions and randomise them
         loadQuestions();
         randomiseList();
+        // set the toggles to show the current question answer infroamtion
+        // lang 1
         binding.lang1Option1.setTextOff(randomisedQuestions[0]);
         binding.lang1Option1.setTextOn(randomisedQuestions[0]);
         binding.lang1Option1.setText(randomisedQuestions[0]);
@@ -132,7 +157,7 @@ public class LanguageQuestionFragment extends Fragment {
         binding.lang1Option3.setTextOff(randomisedQuestions[2]);
         binding.lang1Option3.setTextOn(randomisedQuestions[2]);
         binding.lang1Option3.setText(randomisedQuestions[2]);
-
+        // lang 2
         binding.lang2Option1.setTextOff(randomisedQuestions[3]);
         binding.lang2Option1.setTextOn(randomisedQuestions[3]);
         binding.lang2Option1.setText(randomisedQuestions[3]);
@@ -144,18 +169,25 @@ public class LanguageQuestionFragment extends Fragment {
         binding.lang2Option3.setText(randomisedQuestions[5]);
     }
 
+    /*
+     * randomises the question answes so they are different each time
+     */
     public void randomiseList()
     {
+        // convert to list (2 for the lang 1 & lang 2)
         List<String> stringList = new ArrayList<>();
         List<String> stringList2 = new ArrayList<>();
+        // add all elements to list
         stringList.add(currentQuestions[0]);
         stringList.add(currentQuestions[1]);
         stringList.add(currentQuestions[2]);
         stringList2.add(currentQuestions[3]);
         stringList2.add(currentQuestions[4]);
         stringList2.add(currentQuestions[5]);
+        // shuffle the lists
         Collections.shuffle(stringList);
         Collections.shuffle(stringList2);
+        // set the randomise questions list
         randomisedQuestions[0] = stringList.get(0);
         randomisedQuestions[1] = stringList.get(1);
         randomisedQuestions[2] = stringList.get(2);
@@ -163,10 +195,15 @@ public class LanguageQuestionFragment extends Fragment {
         randomisedQuestions[4] = stringList2.get(1);
         randomisedQuestions[5] = stringList2.get(2);
     }
+    /*
+     * loads the questions from the resources
+     */
     public void loadQuestions()
     {
+        // swtich for the current question
         switch (currentQuestion)
         {
+            // load the questions for the current question the player is on
             case 1:
                 currentQuestions = getResources().getStringArray(R.array.lang_q2);
                 break;
@@ -199,6 +236,9 @@ public class LanguageQuestionFragment extends Fragment {
         }
     }
 
+    /*
+     * turn off all toggles for lang 1
+     */
     public void disableAllLang1()
     {
         binding.lang1Option1.setChecked(false);
@@ -206,6 +246,9 @@ public class LanguageQuestionFragment extends Fragment {
         binding.lang1Option3.setChecked(false);
         lang1ChosenOption = 0;
     }
+    /*
+     * turn off all toggles for lang 2
+     */
     public void disableAllLang2()
     {
         binding.lang2Option1.setChecked(false);
@@ -214,6 +257,9 @@ public class LanguageQuestionFragment extends Fragment {
         lang2ChosenOption = 0;
     }
 
+     /*
+     * handles destroying the view correctly
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

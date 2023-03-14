@@ -41,6 +41,10 @@ public class NoteFragment extends Fragment {
     NotesAdapter adapter;
     public int playerID;
 
+    /*
+     * this method will run when the view is created and will initilaise all
+     * elemtents as well as setting all of the listeners
+     */
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

@@ -3,13 +3,18 @@ package com.example.mobileappas1.ui.Quiz;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * data holder for the results that will be saved storage
+ */
 public class QuizResults
 {
+    // Variables
     private ArrayList name = new ArrayList<>();
     private ArrayList date = new ArrayList<>();;
     private ArrayList<Integer> score = new ArrayList<>();
     private ArrayList<Integer> type = new ArrayList<>();
 
+    // Getters & Setters
     public ArrayList getName(){return name;}
     public void setName(ArrayList value){this.name = value;}
 
