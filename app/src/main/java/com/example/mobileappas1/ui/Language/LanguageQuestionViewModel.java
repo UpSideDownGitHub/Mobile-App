@@ -14,7 +14,7 @@ public class LanguageQuestionViewModel extends ViewModel {
     /*
      * Constructor
      */
-    public EditNoteViewModel() {
+    public LanguageQuestionViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is new note fragment");
     }
