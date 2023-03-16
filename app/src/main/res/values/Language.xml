@@ -28,7 +28,7 @@
         <item>vous</item>
 
         <item>to be</item>
-        <item>to have</item>
+        <item>to see</item>
         <item>to want</item>
     </string-array>
     <string-array name="lang_q2">
@@ -38,7 +38,7 @@
 
         <item>yes</item>
         <item>no</item>
-        <item>maby</item>
+        <item>maybe</item>
     </string-array>
     <string-array name="lang_q3">
         <item>Et</item>
@@ -50,13 +50,13 @@
         <item>with</item>
     </string-array>
     <string-array name="lang_q4">
-        <item>Oui</item>
-        <item>Oiu</item>
-        <item>Je</item>
+        <item>blanc</item>
+        <item>bleu</item>
+        <item>rouge</item>
 
-        <item>yes</item>
-        <item>no</item>
-        <item>maby</item>
+        <item>white</item>
+        <item>green</item>
+        <item>yellow</item>
     </string-array>
     <string-array name="lang_q5">
         <item>Je</item>
@@ -65,16 +65,16 @@
 
         <item>I</item>
         <item>We</item>
-        <item>You</item>
+        <item>us</item>
     </string-array>
     <string-array name="lang_q6">
-        <item>Vous</item>
+        <item>nous</item>
         <item>Je</item>
         <item>Elles</item>
 
         <item>We</item>
         <item>You</item>
-        <item>They</item>
+        <item>those</item>
     </string-array>
     <string-array name="lang_q7">
         <item>Je mange</item>
@@ -92,7 +92,7 @@
 
         <item>Thank you</item>
         <item>please</item>
-        <item>hi/bye</item>
+        <item>hello</item>
     </string-array>
     <string-array name="lang_q9">
         <item>Dix</item>
