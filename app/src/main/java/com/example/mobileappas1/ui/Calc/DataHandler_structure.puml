@@ -1,0 +1,188 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.example.mobileappas1.ui.Calc.DataHandler",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1322970774 { 
+   	label=example
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1233910364 { 
+   	label=mobileappas1
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   CalcFragment1399976082[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CalcFragment</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   adapter: CalcAdapter [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   binding: FragmentCalculatorBinding [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   calculator: Calculator [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   courseName: ArrayList [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   recyclerView: RecyclerView [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ btn_ac(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_ans(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_del(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_divide(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_eight(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_equals(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_five(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_four(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_minus(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_multiply(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_nine(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_one(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_plus(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_point(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_root(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_seven(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_six(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_three(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_two(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ btn_zero(view: View)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle): View</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onDestroyView()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Calculator1399976082[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Calculator</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   binding: FragmentCalculatorBinding [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentText: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   dataHandler: DataHandler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   instructions: List&lt;InputTypes&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   recylerAdapter: CalcAdapter [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addInstruction(type: InputTypes)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showAnswer(value: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showError(error: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateText()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+DataHandler1399976082[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DataHandler</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   currentAnswer: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   previousAnswer: double [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ calculateInstructions(instructions: List&lt;InputTypes&gt;): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ convertToString(instructions: List&lt;InputTypes&gt;): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ convertTypeToString(type: InputTypes): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ number(type: InputTypes): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ number(type: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeAll(instructions: List&lt;InputTypes&gt;): List&lt;InputTypes&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeLast(instructions: List&lt;InputTypes&gt;): List&lt;InputTypes&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+CalcFragment1399976082 -> Calculator1399976082[label="calculator
+[0..1]"];
+Calculator1399976082 -> DataHandler1399976082[label="dataHandler
+[0..1]"];
+    
+}
+@enduml
