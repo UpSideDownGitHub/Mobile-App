@@ -112,6 +112,11 @@ public class QuizQuestionFragment extends Fragment {
      */
     public void checkForCorrect()
     {
+        // if the answer is correct then add one to correct answers
+        if(currentAnswers[answerChosen - 1] == answers[(currentQuestion-1) * 4])
+        {
+            correctAnswers++;
+        }
         // if is the last question
         if (currentQuestion == 10)
         {
@@ -121,10 +126,6 @@ public class QuizQuestionFragment extends Fragment {
             Navigation.findNavController(getView()).navigate(R.id.navigation_quiz_results, bundle);
             return;
         }
-
-        // if the answer is correct then add one to correct answers
-        if(currentAnswers[answerChosen - 1] == answers[(currentQuestion-1) * 4])
-            correctAnswers++;
     }
 
     /*
