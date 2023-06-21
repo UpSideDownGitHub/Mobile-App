@@ -1,6 +1,8 @@
 # Mobile-App
 Features
 - Login Screen
+  - Usernames and Passwords are numbers one-ten
+    - Example Username & Password = "one"
 - Notes Section
   - Create New Notes
   - Edit Old Notes
